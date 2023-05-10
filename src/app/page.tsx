@@ -1,5 +1,5 @@
-import Modal from "./components/Modal";
+import Dropdown from './components/Dropdown';
 
 export default function Home() {
-  return <Modal open title="modal" description="teste" />;
+  return <Dropdown />;
 }
