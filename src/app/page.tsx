@@ -1,5 +1,5 @@
-import Modal from './components/Modal';
+import Alert from './components/Alert';
 
 export default function Home() {
-  return <Modal open title='Teste' description='teste teste' />;
+  return <Alert open title='Teste' />;
 }
