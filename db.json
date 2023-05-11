@@ -141,7 +141,7 @@
         "squadLeaderName": "Jane Smith",
         "squadMembers": ["Jack Johnson", "Jenny Lee"]
       },
-      "hardSkills": ["React JS", "Javascript", "Node", "CSS3", "GIT"]
+      "hardSkills": ["React JS", "Javascript", "CSS3", "GIT"]
     }
   ]
 }
