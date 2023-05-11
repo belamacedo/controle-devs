@@ -1,0 +1,147 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "imagePath": "https://randomuser.me/api/portraits/men/1.jpg",
+      "fullName": "Lucas Oliveira",
+      "squad": {
+        "squadName": "Frontend",
+        "squadLeaderName": "Ana Silva",
+        "squadMembers": ["Julia Costa", "Gustavo Santos"]
+      },
+      "hardSkills": ["React JS", "Angular", "Vue", "Javascript", "CSS3"]
+    },
+    {
+      "id": 2,
+      "imagePath": "https://randomuser.me/api/portraits/women/2.jpg",
+      "fullName": "Ana Costa",
+      "squad": {
+        "squadName": "Backend",
+        "squadLeaderName": "Lucas Santos",
+        "squadMembers": ["Mariana Oliveira", "Pedro Lima", "Gustavo Silva"]
+      },
+      "hardSkills": ["Node", "Nest JS", "Java", "C#", "SQL", "PostgreSQL"]
+    },
+    {
+      "id": 3,
+      "imagePath": "https://randomuser.me/api/portraits/men/3.jpg",
+      "fullName": "Gustavo Silva",
+      "squad": {
+        "squadName": "Mobile",
+        "squadLeaderName": "Julia Costa",
+        "squadMembers": ["Ana Costa", "Lucas Oliveira"]
+      },
+      "hardSkills": ["React Native", "Flutter", "Javascript", "AWS"]
+    },
+    {
+      "id": 4,
+      "imagePath": "https://randomuser.me/api/portraits/women/4.jpg",
+      "fullName": "Julia Santos",
+      "squad": {
+        "squadName": "Data Science",
+        "squadLeaderName": "Gustavo Oliveira",
+        "squadMembers": ["Mariana Oliveira", "Lucas Costa"]
+      },
+      "hardSkills": ["Python", "R", "Power BI", "SQL"]
+    },
+    {
+      "id": 5,
+      "imagePath": "https://randomuser.me/api/portraits/men/5.jpg",
+      "fullName": "Pedro Costa",
+      "squad": {
+        "squadName": "DevOps",
+        "squadLeaderName": "Gustavo Santos",
+        "squadMembers": ["Ana Costa", "Julia Santos"]
+      },
+      "hardSkills": ["Docker", "AWS", "Selenium", "Jest"]
+    },
+    {
+      "id": 6,
+      "imagePath": "https://randomuser.me/api/portraits/women/6.jpg",
+      "fullName": "Mariana Oliveira",
+      "squad": {
+        "squadName": "Frontend",
+        "squadLeaderName": "Lucas Oliveira",
+        "squadMembers": ["Pedro Costa", "Gustavo Santos"]
+      },
+      "hardSkills": ["React JS", "Angular", "Vue", "Javascript", "CSS3"]
+    },
+    {
+      "id": 7,
+      "imagePath": "https://randomuser.me/api/portraits/women/7.jpg",
+      "fullName": "Carolina Oliveira",
+      "squad": {
+        "squadName": "Backend",
+        "squadLeaderName": "Felipe Almeida",
+        "squadMembers": ["Pedro Oliveira", "Marcela Lima"]
+      },
+      "hardSkills": ["Java", "Node", "PostgreSQL"]
+    },
+    {
+      "id": 8,
+      "imagePath": "https://randomuser.me/api/portraits/women/8.jpg",
+      "fullName": "Mia Young",
+      "squad": {
+        "squadName": "Developers",
+        "squadLeaderName": "Jane Smith",
+        "squadMembers": ["Jack Johnson", "Jenny Lee"]
+      },
+      "hardSkills": ["React JS", "Javascript", "Node", "CSS3", "GIT"]
+    },
+    {
+      "id": 9,
+      "imagePath": "https://randomuser.me/api/portraits/men/10.jpg",
+      "fullName": "Eric Hernandez",
+      "squad": {
+        "squadName": "Designers",
+        "squadLeaderName": "John Doe",
+        "squadMembers": ["Karen Kim", "David Nguyen", "Lena Lee"]
+      },
+      "hardSkills": ["Figma", "Sketch", "Illustrator", "Photoshop", "CSS3"]
+    },
+    {
+      "id": 10,
+      "imagePath": "https://randomuser.me/api/portraits/women/14.jpg",
+      "fullName": "Emily Davis",
+      "squad": {
+        "squadName": "Developers",
+        "squadLeaderName": "Jane Smith",
+        "squadMembers": ["Jack Johnson", "Jenny Lee"]
+      },
+      "hardSkills": ["React JS", "Javascript", "Node", "CSS3", "GIT"]
+    },
+    {
+      "id": 11,
+      "imagePath": "https://randomuser.me/api/portraits/men/9.jpg",
+      "fullName": "Ryan Thompson",
+      "squad": {
+        "squadName": "QA Engineers",
+        "squadLeaderName": "Sarah Johnson",
+        "squadMembers": ["David Kim", "Lena Lee"]
+      },
+      "hardSkills": ["Selenium", "Jest", "Node", "Javascript", "GIT"]
+    },
+    {
+      "id": 12,
+      "imagePath": "https://randomuser.me/api/portraits/women/12.jpg",
+      "fullName": "Olivia Wilson",
+      "squad": {
+        "squadName": "Data Science",
+        "squadLeaderName": "Emily Smith",
+        "squadMembers": ["John Lee", "Karen Kim"]
+      },
+      "hardSkills": ["Python", "R", "SQL", "Power BI", "Tableau"]
+    },
+    {
+      "id": 13,
+      "imagePath": "https://randomuser.me/api/portraits/men/13.jpg",
+      "fullName": "Daniel Rodriguez",
+      "squad": {
+        "squadName": "Developers",
+        "squadLeaderName": "Jane Smith",
+        "squadMembers": ["Jack Johnson", "Jenny Lee"]
+      },
+      "hardSkills": ["React JS", "Javascript", "CSS3", "GIT"]
+    }
+  ]
+}
