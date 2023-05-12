@@ -1,6 +1,8 @@
+
 'use client'
 import { useEffect, useState } from 'react';
 import Modal from './components/Modal';
+
 
 export default function Home() {
   const [modal, setModal] = useState(false);
@@ -16,5 +18,6 @@ export default function Home() {
         nihil.
       </p>
     </Modal>
+
   );
 }
