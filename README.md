@@ -14,7 +14,7 @@ Antes de começar, certifique-se de ter as seguintes ferramentas instaladas em s
 1. Clone o repositório do projeto.
 2. Na raiz do projeto, execute o comando npm install para instalar as dependências do projeto.
 
-## Como usar 🤔
+# Como usar 🤔
 
 ## Desenvolvimento 🖥️
 
