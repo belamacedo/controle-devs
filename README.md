@@ -1,4 +1,4 @@
-# Controle de Devs 👨‍💻
+# Controle de Devs 👩‍💻
 
 O projeto exibe uma lista de usuários, com o objetivo de permitir que outras pessoas possam ver as habilidades técnicas dos funcionários da empresa. Isso pode ser útil para quem está buscando profissionais com conhecimentos específicos para projetos ou trabalhos. A lista inclui informações como nome, email, cargo, equipe, foto e as principais habilidades técnicas de cada funcionário. Com essa lista, outras pessoas podem encontrar facilmente profissionais com as habilidades necessárias para trabalhar em seus projetos.
 
