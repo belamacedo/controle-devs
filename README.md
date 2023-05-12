@@ -44,6 +44,6 @@ Para criar uma versão otimizada do projeto para produção, execute o comando _
 
 Os seguintes colaboradores contribuíram para o desenvolvimento deste projeto:
 
-- Karoline Quetz 👩‍💻
-- Isabela Macedo 👩‍💻
-- Gabriel Traldi 👨‍💻
+- [Karoline Quetz](https://github.com/karolinequetz) 👩‍💻
+- [Isabela Macedo](https://github.com/belamacedo) 👩‍💻
+- [Gabriel Traldi](https://github.com/Gabriel-Traldi) 👨‍💻
