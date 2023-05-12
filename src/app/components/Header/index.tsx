@@ -46,8 +46,8 @@ const Header = () => (
                           <a
                             href='#'
                             className={classNames(
-                              active ? Styles.active.activeItem() : '',
-                              Styles.active.notActiveItem()
+                              active ? Styles.menuItemActive() : '',
+                              Styles.menuItem()
                             )}
                           >
                             Sair
