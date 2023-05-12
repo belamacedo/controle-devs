@@ -1,16 +1,18 @@
 import { cva } from 'class-variance-authority';
 
-export const div1 = cva('mx-auto max-w-full px-2 sm:px-6 lg:px-8');
+export const marginPadding = cva('mx-auto max-w-full px-2 sm:px-6 lg:px-8');
 
-export const div2 = cva('relative flex h-16 items-center justify-between');
+export const relativeFlex = cva(
+  'relative flex h-16 items-center justify-between'
+);
 
-export const div3 = cva(
+export const flex = cva(
   'flex flex-1 items-center justify-center sm:items-stretch sm:justify-start'
 );
 
-export const div4 = cva('flex flex-shrink-0 items-center');
+export const flexShrink = cva('flex flex-shrink-0 items-center');
 
-export const div5 = cva(
+export const absoluteInset = cva(
   'absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'
 );
 
