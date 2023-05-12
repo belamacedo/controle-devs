@@ -18,17 +18,17 @@ Antes de começar, certifique-se de ter as seguintes ferramentas instaladas em s
 
 ## Desenvolvimento 🖥️
 
-1. Para executar o projeto em modo de desenvolvimento, execute o comando npm run dev.
-2. Execute o comando npm run dev:server para iniciar o servidor do Json Server.
+1. Para executar o projeto em modo de desenvolvimento, execute o comando _npm run dev_.
+2. Execute o comando _npm run dev:server_ para iniciar o servidor do Json Server.
 3. Abra seu navegador em http://localhost:3000 para acessar a aplicação.
 
 ## Storybook 📚
 
-Para executar o Storybook, execute o comando npm run storybook. O Storybook será aberto em seu navegador padrão.
+Para executar o Storybook, execute o comando _npm run storybook_. O Storybook será aberto em seu navegador padrão.
 
 ## Build 🏗️
 
-Para criar uma versão otimizada do projeto para produção, execute o comando npm run build. Isso criará uma pasta build na raiz do projeto com os arquivos otimizados para produção.
+Para criar uma versão otimizada do projeto para produção, execute o comando _npm run build_. Isso criará uma pasta build na raiz do projeto com os arquivos otimizados para produção.
 
 ## Tecnologias utilizadas 🛠️
 
