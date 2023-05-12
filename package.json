@@ -27,7 +27,6 @@
     "class-variance-authority": "^0.6.0",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.1",
-    "json-server": "^0.17.3",
     "next": "13.4.1",
     "postcss": "8.4.23",
     "react": "18.2.0",
@@ -44,6 +43,7 @@
     "@storybook/react": "^7.0.10",
     "@storybook/testing-library": "^0.0.14-next.2",
     "eslint-plugin-storybook": "^0.6.12",
-    "storybook": "^7.0.10"
+    "storybook": "^7.0.10",
+    "json-server": "^0.17.3"
   }
 }
