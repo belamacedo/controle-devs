@@ -1,34 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Controle de Devs 👩‍💻
 
-## Getting Started
+O projeto exibe uma lista de usuários, com o objetivo de permitir que outras pessoas possam ver as habilidades técnicas dos funcionários da empresa. Isso pode ser útil para quem está buscando profissionais com conhecimentos específicos para projetos ou trabalhos. A lista inclui informações como nome, email, cargo, equipe, foto e as principais habilidades técnicas de cada funcionário. Com essa lista, outras pessoas podem encontrar facilmente profissionais com as habilidades necessárias para trabalhar em seus projetos.
 
-First, run the development server:
+## Pré-requisitos 🛠️
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Antes de começar, certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Node.js
+- npm
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Instalação 🚀
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Clone o repositório do projeto.
+2. Na raiz do projeto, execute o comando npm install para instalar as dependências do projeto.
 
-## Learn More
+# Como usar 🤔
 
-To learn more about Next.js, take a look at the following resources:
+## Desenvolvimento 🖥️
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Para executar o projeto em modo de desenvolvimento, execute o comando _npm run dev_.
+2. Execute o comando _npm run dev:server_ para iniciar o servidor do Json Server.
+3. Abra seu navegador em http://localhost:3000 para acessar a aplicação.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Storybook 📚
 
-## Deploy on Vercel
+Para executar o Storybook, execute o comando _npm run storybook_. O Storybook será aberto em seu navegador padrão.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Build 🏗️
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Para criar uma versão otimizada do projeto para produção, execute o comando _npm run build_. Isso criará uma pasta build na raiz do projeto com os arquivos otimizados para produção.
+
+## Tecnologias utilizadas 🛠️
+
+- [Next.js](https://nextjs.org/)
+- [npm](https://www.npmjs.com/)
+- [Storybook](https://storybook.js.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [CVA](https://cva.style/docs/getting-started)
+- [Radix UI](https://radix-ui.com/)
+- [JSON Server](https://github.com/typicode/json-server)
+
+## Contribuindo 👥
+
+Os seguintes colaboradores contribuíram para o desenvolvimento deste projeto:
+
+- [Karoline Quetz](https://github.com/karolinequetz) 👩‍💻
+- [Isabela Macedo](https://github.com/belamacedo) 👩‍💻
+- [Gabriel Traldi](https://github.com/Gabriel-Traldi) 👨‍💻
