@@ -8,7 +8,7 @@ interface Props {
 }
 
 const Switch = ({ label }: Props) => (
-  <form>
+ 
     <div className={Styles.container()}>
       <label className={Styles.label()} htmlFor='airplane-mode'>
         {label}
@@ -17,7 +17,7 @@ const Switch = ({ label }: Props) => (
         <SwitchUI.Thumb className={Styles.switchThumb()} />
       </SwitchUI.Root>
     </div>
-  </form>
+
 );
 
 export default Switch;
