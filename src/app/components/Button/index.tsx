@@ -1,15 +1,13 @@
-"use client";
-import React from "react";
+'use client';
+import React from 'react';
+import * as Styles from './styles';
 
 interface Props {
   text: string;
 }
 
 const Button = ({ text, ...props }: Props) => (
-  <button
-    {...props}
-    className="bg-white hover:bg-gray-100 text-gray-500 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-  >
+  <button {...props} className={Styles.button()}>
     {text}
   </button>
 );
