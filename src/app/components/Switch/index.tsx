@@ -8,16 +8,14 @@ interface Props {
 }
 
 const Switch = ({ label }: Props) => (
- 
-    <div className={Styles.container()}>
-      <label className={Styles.label()} htmlFor='airplane-mode'>
-        {label}
-      </label>
-      <SwitchUI.Root className={Styles.switchRoot()} id='airplane-mode'>
-        <SwitchUI.Thumb className={Styles.switchThumb()} />
-      </SwitchUI.Root>
-    </div>
-
+  <div className={Styles.container()}>
+    <label className={Styles.label()} htmlFor='airplane-mode'>
+      {label}
+    </label>
+    <SwitchUI.Root className={Styles.switchRoot()} id='airplane-mode'>
+      <SwitchUI.Thumb className={Styles.switchThumb()} />
+    </SwitchUI.Root>
+  </div>
 );
 
 export default Switch;
