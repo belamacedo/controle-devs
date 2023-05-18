@@ -31,7 +31,7 @@ const MenuLogout = () => {
     <div className={Styles.menu()}>
       <div>
         <Button
-          intent='darkModeButton'
+          intent='menuButton'
           shape='circular'
           imageSrc={UserAvatar.src}
           onClick={handleOpenMenu}

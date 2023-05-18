@@ -10,7 +10,7 @@ export const button = cva('transition ease-out duration-100 transform ', {
 
       secondary:
         'bg-transparent border-indigo-700 hover:text-white border-2 text-black  dark:text-white hover:bg-violet-600  focus:ring-white focus:ring-offset-2  ',
-      darkModeButton:
+      menuButton:
         'flex bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800',
     },
     size: {
