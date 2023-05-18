@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 
+import { Button } from '@/app/components/Button';
+
 import UserAvatar from '../../../../../assets/user-avatar.png';
 
 import * as Styles from './styles';
@@ -28,13 +30,12 @@ const MenuLogout = () => {
   return (
     <div className={Styles.menu()}>
       <div>
-        <button className={Styles.menuButton()} onClick={handleOpenMenu}>
-          <Image
-            src={UserAvatar}
-            className={Styles.menuImg()}
-            alt='Foto do usuário'
-          />
-        </button>
+        <Button
+          intent='darkModeButton'
+          shape='circular'
+          imageSrc={UserAvatar.src}
+          onClick={handleOpenMenu}
+        />
       </div>
       {isOpen && (
         <div className={Styles.menuItems()}>
