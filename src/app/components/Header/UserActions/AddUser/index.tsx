@@ -1,9 +1,9 @@
 import React from 'react';
 
-import * as Styles from './styles';
+import { Button } from '@/app/components/Button';
 
 const AddUser = () => {
-  return <button className={Styles.addButton()}>Adicionar usuário</button>;
+  return <Button text='Adicionar usuário' />;
 };
 
 export default AddUser;
