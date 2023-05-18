@@ -36,4 +36,5 @@ export interface ButtonProps
     VariantProps<typeof button> {
   text?: string;
   imageSrc?: string;
+  alt?: string;
 }

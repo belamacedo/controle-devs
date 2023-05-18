@@ -35,6 +35,7 @@ const MenuLogout = () => {
           shape='circular'
           imageSrc={UserAvatar.src}
           onClick={handleOpenMenu}
+          alt='Avatar do usuário'
         />
       </div>
       {isOpen && (
