@@ -1,9 +1,7 @@
-'use client';
-import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { SunIcon, MoonIcon } from '@radix-ui/react-icons';
 
-import * as Styles from './styles';
+import { Button } from '../../Button';
 
 const DarkModeToggle = () => {
   const { theme, setTheme } = useTheme();
@@ -16,9 +14,12 @@ const DarkModeToggle = () => {
   };
 
   return (
-    <button className={Styles.darkModeButton()} onClick={toggleDarkMode}>
-      {isDarkMode ? <MoonIcon /> : <SunIcon />}
-    </button>
+    <Button
+      intent='transparent'
+      shape='icon'
+      onClick={toggleDarkMode}
+      icon={isDarkMode ? <MoonIcon /> : <SunIcon />}
+    />
   );
 };
 
