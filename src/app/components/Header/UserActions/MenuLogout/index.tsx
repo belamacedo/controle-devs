@@ -32,7 +32,6 @@ const MenuLogout = () => {
       <div>
         <Button
           intent='menuButton'
-          shape='circular'
           imageSrc={UserAvatar.src}
           onClick={handleOpenMenu}
           alt='Avatar do usuário'

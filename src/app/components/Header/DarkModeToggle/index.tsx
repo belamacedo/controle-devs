@@ -16,7 +16,6 @@ const DarkModeToggle = () => {
   return (
     <Button
       intent='transparent'
-      shape='icon'
       onClick={toggleDarkMode}
       icon={isDarkMode ? <MoonIcon /> : <SunIcon />}
     />
