@@ -15,9 +15,12 @@ import {
   ImageUpload,
   MultiSelect,
   Select,
+  Switch,
 } from "@controle-devs-ui/react";
 
 import "@controle-devs-ui/react/dist/index.css";
+
+import * as Styles from "./styles";
 
 const skills = [
   { value: "1", label: "React Js" },
@@ -52,21 +55,22 @@ export const NewUserForm = () => {
         message: "A descrição deve ter pelo menos 2 caracteres..",
       })
       .nonempty("O nome é obrigatório"),
-    photo: z.object({
-      url: z.string(),
-      alt: z.string(),
-    }),
     hardSkills: z.array(z.string()),
     squad: z.array(z.string()),
+    biography: z.optional(z.string()),
+    photo: z.optional(z.string()),
+    inactiveUser: z.optional(z.boolean()),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      photo: "",
+      inactiveUser: false,
+      biography: "",
       username: "",
       email: "",
       description: "",
-      photo: {},
       hardSkills: [],
       squad: [],
     },
@@ -77,41 +81,83 @@ export const NewUserForm = () => {
   }
 
   return (
-    <div className="flex justify-center">
+    <div className={Styles.container()}>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <div className="grid grid-cols-2">
-            <div className="w-60">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className={Styles.formContainer()}
+        >
+          <div className={Styles.formContent()}>
+            <div className={Styles.contentLeftFields()}>
               <FormField
-                control={form.control}
                 name="photo"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="bold text-lg dark:text-white">
+                    <FormLabel className={Styles.photo()}>
                       Adicione uma foto:
                     </FormLabel>
                     <FormControl>
                       <ImageUpload {...field} />
                     </FormControl>
-                    <FormMessage className="text-red-900" />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                name="inactiveUser"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Switch
+                        label=" O usuário está inativo? "
+                        root={{
+                          asChild: false,
+                          defaultChecked: false,
+                          checked: false,
+                          onCheckedChange: () => {},
+                          disabled: false,
+                          required: false,
+                          name: "",
+                          value: "",
+                        }}
+                        thumb={{ asChild: false }}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage className={Styles.message()} />
                   </FormItem>
                 )}
               />
             </div>
 
-            <div className="w-96 justify-end space-y-8">
+            <div className={Styles.contentRightFields()}>
+              <FormField
+                name="biography"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className={Styles.biography()}>
+                      Biografia:
+                    </FormLabel>
+                    <FormControl>
+                      <textarea
+                        {...field}
+                        className={Styles.biographyInput()}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
               <FormField
                 control={form.control}
                 name="username"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className=" bold text-lg dark:text-white pr-48">
+                    <FormLabel className={Styles.userName()}>
                       Nome completo:
                     </FormLabel>
                     <FormControl>
-                      <Input placeholder="nome" {...field} className="w-full" />
+                      <Input placeholder="Nome completo" {...field} />
                     </FormControl>
-                    <FormMessage className="text-red-900" />
+                    <FormMessage className={Styles.message()} />
                   </FormItem>
                 )}
               />
@@ -120,17 +166,11 @@ export const NewUserForm = () => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className=" bold text-lg dark:text-white pr-48">
-                      E-mail:
-                    </FormLabel>
+                    <FormLabel className={Styles.email()}>E-mail:</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="email"
-                        {...field}
-                        className="w-full"
-                      />
+                      <Input placeholder="E-mail" {...field} />
                     </FormControl>
-                    <FormMessage className="text-red-900" />
+                    <FormMessage className={Styles.message()} />
                   </FormItem>
                 )}
               />
@@ -139,17 +179,13 @@ export const NewUserForm = () => {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className=" bold text-lg dark:text-white pr-48">
+                    <FormLabel className={Styles.description()}>
                       Descrição:
                     </FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="description"
-                        {...field}
-                        className="w-full"
-                      />
+                      <Input placeholder="Descrição" {...field} />
                     </FormControl>
-                    <FormMessage className="text-red-900" />
+                    <FormMessage className={Styles.message()} />
                   </FormItem>
                 )}
               />
@@ -158,7 +194,7 @@ export const NewUserForm = () => {
                 name="hardSkills"
                 render={() => (
                   <FormItem>
-                    <FormLabel className="bold text-lg dark:text-white">
+                    <FormLabel className={Styles.hardSkills()}>
                       Habilidades:
                     </FormLabel>
                     <FormControl>
@@ -171,7 +207,7 @@ export const NewUserForm = () => {
                         onChange={() => {}}
                       />
                     </FormControl>
-                    <FormMessage className="text-red-900" />
+                    <FormMessage className={Styles.message()} />
                   </FormItem>
                 )}
               />
@@ -180,9 +216,7 @@ export const NewUserForm = () => {
                 name="squad"
                 render={() => (
                   <FormItem>
-                    <FormLabel className="bold text-lg dark:text-white">
-                      Squad:
-                    </FormLabel>
+                    <FormLabel className={Styles.squad()}>Squad:</FormLabel>
                     <FormControl>
                       <Select
                         placeholder="Selecione a squad"
@@ -190,7 +224,7 @@ export const NewUserForm = () => {
                         options={squad}
                       />
                     </FormControl>
-                    <FormMessage className="text-red-900" />
+                    <FormMessage className={Styles.message()} />
                   </FormItem>
                 )}
               />
