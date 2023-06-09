@@ -12,8 +12,10 @@ const Navbar = ({ children }: Props) => {
       <nav className={Styles.navBar()}>
         <div className={Styles.container()}>
           <div className={Styles.header()}>
-            <Logo />
-            {children}
+            <div className={Styles.logoContainer()}>
+              <Logo />
+            </div>
+            <div className={Styles.childContainer()}>{children} </div>
           </div>
         </div>
       </nav>

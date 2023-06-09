@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { Button } from '@controle-devs-ui/react';
 
-import { Button } from '@/app/components/Button';
 
 import UserAvatar from '../../../../../assets/user-avatar.png';
 
