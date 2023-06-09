@@ -1,7 +1,7 @@
 import { useTheme } from 'next-themes';
 import { SunIcon, MoonIcon } from '@radix-ui/react-icons';
-
-import { Button } from '../../Button';
+import { Button } from '@controle-devs-ui/react';
+import * as Styles from './styles';
 
 const DarkModeToggle = () => {
   const { theme, setTheme } = useTheme();
@@ -15,6 +15,7 @@ const DarkModeToggle = () => {
 
   return (
     <Button
+      className={Styles.button()}
       intent='transparent'
       onClick={toggleDarkMode}
       icon={isDarkMode ? <MoonIcon /> : <SunIcon />}
