@@ -37,6 +37,15 @@ const squad = [
 
 export const NewUserForm = () => {
   const [output, setOutput] = useState("");
+
+  const handleImageChange = (file: File) => {
+    form.setValue("photo", file);
+  };
+
+  const handleRemoveImage = () => {
+    form.setValue("photo", null);
+  };
+
   const formSchema = z.object({
     username: z
       .string()
@@ -58,14 +67,14 @@ export const NewUserForm = () => {
     hardSkills: z.array(z.string()),
     squad: z.array(z.string()),
     biography: z.optional(z.string()),
-    photo: z.optional(z.string()),
     inactiveUser: z.optional(z.boolean()),
+    photo: z.custom<File | null>(),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      photo: "",
+      photo: null,
       inactiveUser: false,
       biography: "",
       username: "",
@@ -77,6 +86,7 @@ export const NewUserForm = () => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values);
     setOutput(JSON.stringify(values, null, 2));
   }
 
@@ -97,7 +107,12 @@ export const NewUserForm = () => {
                       Adicione uma foto:
                     </FormLabel>
                     <FormControl>
-                      <ImageUpload {...field} />
+                      <ImageUpload
+                        {...field}
+                        onChange={(file) => handleImageChange(file)}
+                        onRemove={handleRemoveImage}
+                        accept="image/*"
+                      />
                     </FormControl>
                   </FormItem>
                 )}
@@ -187,6 +202,23 @@ export const NewUserForm = () => {
               />
               <FormField
                 control={form.control}
+                name="squad"
+                render={() => (
+                  <FormItem>
+                    <FormLabel className={Styles.label()}>Squad:</FormLabel>
+                    <FormControl>
+                      <Select
+                        placeholder="Selecione a squad"
+                        descriptiveTextForAccessibility="select com opções de squad"
+                        options={squad}
+                      />
+                    </FormControl>
+                    <FormMessage className={Styles.message()} />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
                 name="hardSkills"
                 render={() => (
                   <FormItem>
@@ -207,24 +239,8 @@ export const NewUserForm = () => {
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="squad"
-                render={() => (
-                  <FormItem>
-                    <FormLabel className={Styles.label()}>Squad:</FormLabel>
-                    <FormControl>
-                      <Select
-                        placeholder="Selecione a squad"
-                        descriptiveTextForAccessibility="select com opções de squad"
-                        options={squad}
-                      />
-                    </FormControl>
-                    <FormMessage className={Styles.message()} />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit" text="Enviar" />
+
+              <Button type="submit" text="Cadastrar" />
             </div>
           </div>
         </form>

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button } from "@/app/components/Button";
+import { Button } from "@controle-devs-ui/react";
 
 import Link from "next/link";
 
