@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import {
@@ -16,6 +15,7 @@ import {
   MultiSelect,
   Select,
   Switch,
+  useForm,
 } from "@controle-devs-ui/react";
 
 import "@controle-devs-ui/react/dist/index.css";
