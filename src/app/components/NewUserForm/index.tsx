@@ -134,9 +134,7 @@ export const NewUserForm = () => {
                 name="biography"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className={Styles.biography()}>
-                      Biografia:
-                    </FormLabel>
+                    <FormLabel className={Styles.label()}>Biografia:</FormLabel>
                     <FormControl>
                       <textarea
                         {...field}
@@ -151,7 +149,7 @@ export const NewUserForm = () => {
                 name="username"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className={Styles.userName()}>
+                    <FormLabel className={Styles.label()}>
                       Nome completo:
                     </FormLabel>
                     <FormControl>
@@ -166,7 +164,7 @@ export const NewUserForm = () => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className={Styles.email()}>E-mail:</FormLabel>
+                    <FormLabel className={Styles.label()}>E-mail:</FormLabel>
                     <FormControl>
                       <Input placeholder="E-mail" {...field} />
                     </FormControl>
@@ -179,9 +177,7 @@ export const NewUserForm = () => {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className={Styles.description()}>
-                      Descrição:
-                    </FormLabel>
+                    <FormLabel className={Styles.label()}>Descrição:</FormLabel>
                     <FormControl>
                       <Input placeholder="Descrição" {...field} />
                     </FormControl>
@@ -194,7 +190,7 @@ export const NewUserForm = () => {
                 name="hardSkills"
                 render={() => (
                   <FormItem>
-                    <FormLabel className={Styles.hardSkills()}>
+                    <FormLabel className={Styles.label()}>
                       Habilidades:
                     </FormLabel>
                     <FormControl>
@@ -216,7 +212,7 @@ export const NewUserForm = () => {
                 name="squad"
                 render={() => (
                   <FormItem>
-                    <FormLabel className={Styles.squad()}>Squad:</FormLabel>
+                    <FormLabel className={Styles.label()}>Squad:</FormLabel>
                     <FormControl>
                       <Select
                         placeholder="Selecione a squad"
