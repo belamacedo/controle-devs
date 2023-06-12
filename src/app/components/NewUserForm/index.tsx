@@ -15,7 +15,7 @@ import {
   MultiSelect,
   Select,
   Switch,
-  useForm,
+  useForm
 } from "@controle-devs-ui/react";
 
 import "@controle-devs-ui/react/dist/index.css";
@@ -46,6 +46,11 @@ export const NewUserForm = () => {
     form.setValue("photo", null);
   };
 
+  const onChangeHardSkills = (selectedOptions: { value: string; label: string }[]) => {
+    const options = selectedOptions.map((option) => option.label)
+    form.setValue("hardSkills",options) ;
+     };   
+
   const formSchema = z.object({
     username: z
       .string()
@@ -65,7 +70,7 @@ export const NewUserForm = () => {
       })
       .nonempty("O nome é obrigatório"),
     hardSkills: z.array(z.string()),
-    squad: z.array(z.string()),
+    squad: z.string().nonempty("Selecione a squad"),
     biography: z.optional(z.string()),
     inactiveUser: z.optional(z.boolean()),
     photo: z.custom<File | null>(),
@@ -81,9 +86,10 @@ export const NewUserForm = () => {
       email: "",
       description: "",
       hardSkills: [],
-      squad: [],
+      squad: "",
     },
   });
+  
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
@@ -203,14 +209,16 @@ export const NewUserForm = () => {
               <FormField
                 control={form.control}
                 name="squad"
-                render={() => (
+                render={({field}) => (
                   <FormItem>
                     <FormLabel className={Styles.label()}>Squad:</FormLabel>
                     <FormControl>
                       <Select
+                       {...field}
                         placeholder="Selecione a squad"
                         descriptiveTextForAccessibility="select com opções de squad"
                         options={squad}
+                       root={{onValueChange:field.onChange, defaultValue: field.value}}                  
                       />
                     </FormControl>
                     <FormMessage className={Styles.message()} />
@@ -220,19 +228,20 @@ export const NewUserForm = () => {
               <FormField
                 control={form.control}
                 name="hardSkills"
-                render={() => (
+                render={({field}) => (
                   <FormItem>
                     <FormLabel className={Styles.label()}>
                       Habilidades:
                     </FormLabel>
                     <FormControl>
                       <MultiSelect
+                       {...field}
                         checkbox={true}
                         select={{
                           options: skills,
                           placeholder: "Selecione as opções",
                         }}
-                        onChange={() => {}}
+                        onChange={() => onChangeHardSkills }
                       />
                     </FormControl>
                     <FormMessage className={Styles.message()} />
