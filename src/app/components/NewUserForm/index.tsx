@@ -12,11 +12,11 @@ import {
   FormMessage,
   Button,
   ImageUpload,
-  MultiSelect,
   Select,
   Switch,
   useForm,
   MultiValueProps,
+  MultiSelect,
   Options,
 } from "@controle-devs-ui/react";
 
@@ -38,19 +38,7 @@ const squad = [
 ];
 
 export const NewUserForm = () => {
-  const [output, setOutput] = useState("");
-
-  const handleImageChange = (file: File) => {
-    form.setValue("photo", file);
-  };
-
-  const handleRemoveImage = () => {
-    form.setValue("photo", null);
-  };
-  const onChangeHardSkills = (selectedOptions: MultiValueProps) => {
-    const options = selectedOptions.map((option) => option.label);
-    form.setValue("hardSkills", options);
-  };
+  const [inactive, setInactive] = useState<boolean>(false);
 
   const formSchema = z.object({
     username: z
@@ -70,7 +58,7 @@ export const NewUserForm = () => {
         message: "A descrição deve ter pelo menos 2 caracteres..",
       })
       .nonempty("O nome é obrigatório"),
-    hardSkills: z.array(z.string()).refine((item) => item.length > 0, {
+    hardSkills: z.array(z.string()).refine((skills) => skills.length > 0, {
       message: "Selecione pelo menos uma habilidade",
     }),
     squad: z.string().nonempty("Selecione a squad"),
@@ -93,9 +81,25 @@ export const NewUserForm = () => {
     },
   });
 
+  const handleImageChange = (file: File) => {
+    form.setValue("photo", file);
+  };
+
+  const handleRemoveImage = () => {
+    form.setValue("photo", null);
+  };
+  const onChangeHardSkills = (selectedOptions: MultiValueProps) => {
+    const options = selectedOptions.map((option) => option.label);
+    form.setValue("hardSkills", options);
+  };
+
+  const onChangeInactiveUser = () => {
+    setInactive((prevState) => !prevState);
+    form.setValue("inactiveUser", !inactive);
+  };
+
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
-    setOutput(JSON.stringify(values, null, 2));
   }
 
   return (
@@ -133,14 +137,12 @@ export const NewUserForm = () => {
                       <Switch
                         label=" O usuário está inativo? "
                         root={{
-                          asChild: false,
-                          defaultChecked: false,
-                          checked: false,
-                          onCheckedChange: () => {},
+                          defaultChecked: inactive,
+                          checked: inactive,
+                          onCheckedChange: onChangeInactiveUser,
                           disabled: false,
                           required: false,
-                          name: "",
-                          value: "",
+                          name: "inactiveUser",
                         }}
                         thumb={{ asChild: false }}
                         {...field}
@@ -259,8 +261,6 @@ export const NewUserForm = () => {
             </div>
           </div>
         </form>
-
-        <pre className="dark:text-white">{output}</pre>
       </Form>
     </div>
   );
