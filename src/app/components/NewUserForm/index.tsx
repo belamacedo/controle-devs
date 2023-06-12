@@ -15,14 +15,16 @@ import {
   MultiSelect,
   Select,
   Switch,
-  useForm
+  useForm,
+  MultiValueProps,
+  Options,
 } from "@controle-devs-ui/react";
 
 import "@controle-devs-ui/react/dist/index.css";
 
 import * as Styles from "./styles";
 
-const skills = [
+const skills: Options[] = [
   { value: "1", label: "React Js" },
   { value: "2", label: "React Native" },
   { value: "3", label: "Angular" },
@@ -45,11 +47,10 @@ export const NewUserForm = () => {
   const handleRemoveImage = () => {
     form.setValue("photo", null);
   };
-
-  const onChangeHardSkills = (selectedOptions: { value: string; label: string }[]) => {
-    const options = selectedOptions.map((option) => option.label)
-    form.setValue("hardSkills",options) ;
-     };   
+  const onChangeHardSkills = (selectedOptions: MultiValueProps) => {
+    const options = selectedOptions.map((option) => option.label);
+    form.setValue("hardSkills", options);
+  };
 
   const formSchema = z.object({
     username: z
@@ -69,7 +70,9 @@ export const NewUserForm = () => {
         message: "A descrição deve ter pelo menos 2 caracteres..",
       })
       .nonempty("O nome é obrigatório"),
-    hardSkills: z.array(z.string()),
+    hardSkills: z.array(z.string()).refine((item) => item.length > 0, {
+      message: "Selecione pelo menos uma habilidade",
+    }),
     squad: z.string().nonempty("Selecione a squad"),
     biography: z.optional(z.string()),
     inactiveUser: z.optional(z.boolean()),
@@ -89,7 +92,6 @@ export const NewUserForm = () => {
       squad: "",
     },
   });
-  
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
@@ -209,16 +211,18 @@ export const NewUserForm = () => {
               <FormField
                 control={form.control}
                 name="squad"
-                render={({field}) => (
+                render={({ field }) => (
                   <FormItem>
                     <FormLabel className={Styles.label()}>Squad:</FormLabel>
                     <FormControl>
                       <Select
-                       {...field}
-                        placeholder="Selecione a squad"
+                        {...field}
                         descriptiveTextForAccessibility="select com opções de squad"
+                        placeholder="Selecione a squad..."
                         options={squad}
-                       root={{onValueChange:field.onChange, defaultValue: field.value}}                  
+                        root={{
+                          onValueChange: field.onChange,
+                        }}
                       />
                     </FormControl>
                     <FormMessage className={Styles.message()} />
@@ -228,20 +232,22 @@ export const NewUserForm = () => {
               <FormField
                 control={form.control}
                 name="hardSkills"
-                render={({field}) => (
+                render={({ field }) => (
                   <FormItem>
                     <FormLabel className={Styles.label()}>
                       Habilidades:
                     </FormLabel>
                     <FormControl>
                       <MultiSelect
-                       {...field}
+                        {...field}
                         checkbox={true}
                         select={{
                           options: skills,
-                          placeholder: "Selecione as opções",
+                          placeholder: "Selecione as opções...",
+                          closeMenuOnSelect: false,
+                          hideSelectedOptions: false,
                         }}
-                        onChange={() => onChangeHardSkills }
+                        onChange={onChangeHardSkills}
                       />
                     </FormControl>
                     <FormMessage className={Styles.message()} />
