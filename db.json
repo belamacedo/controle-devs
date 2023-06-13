@@ -1,4 +1,136 @@
 {
+  "squad": [
+    {
+      "value": "1",
+      "label": "Data Science"
+    },
+    {
+      "value": "2",
+      "label": "Frontend"
+    },
+    {
+      "value": "3",
+      "label": "Backend"
+    },
+    {
+      "value": "4",
+      "label": "Mobile"
+    },
+    {
+      "value": "5",
+      "label": "DevOps"
+    },
+    {
+      "value": "6",
+      "label": "Developers"
+    },
+    {
+      "value": "7",
+      "label": "Designers"
+    },
+    {
+      "value": "8",
+      "label": "QA Engineers"
+    }
+  ],
+  "skills": [
+    {
+      "value": "1",
+      "label": "React Js"
+    },
+    {
+      "value": "2",
+      "label": "React Native"
+    },
+    {
+      "value": "3",
+      "label": "Angular"
+    },
+    {
+      "value": "4",
+      "label": "C#"
+    },
+    {
+      "value": "5",
+      "label": "Mobile"
+    }
+  ],
+  "squadInfo": [
+    {
+      "id": "1",
+      "squadName": "Frontend",
+      "squadLeaderName": "Ana Silva",
+      "squadMembers": [
+        "Julia Costa",
+        "Gustavo Santos"
+      ]
+    },
+    {
+      "id": "2",
+      "squadName": "Backend",
+      "squadLeaderName": "Lucas Santos",
+      "squadMembers": [
+        "Mariana Oliveira",
+        "Pedro Lima",
+        "Gustavo Silva"
+      ]
+    },
+    {
+      "id": "3",
+      "squadName": "Mobile",
+      "squadLeaderName": "Julia Costa",
+      "squadMembers": [
+        "Ana Costa",
+        "Lucas Oliveira"
+      ]
+    },
+    {
+      "id": "4",
+      "squadName": "Data Science",
+      "squadLeaderName": "Gustavo Oliveira",
+      "squadMembers": [
+        "Mariana Oliveira",
+        "Lucas Costa"
+      ]
+    },
+    {
+      "id": "5",
+      "squadName": "DevOps",
+      "squadLeaderName": "Gustavo Santos",
+      "squadMembers": [
+        "Ana Costa",
+        "Julia Santos"
+      ]
+    },
+    {
+      "id": "6",
+      "squadName": "Developers",
+      "squadLeaderName": "Jane Smith",
+      "squadMembers": [
+        "Jack Johnson",
+        "Jenny Lee"
+      ]
+    },
+    {
+      "id": "7",
+      "squadName": "Designers",
+      "squadLeaderName": "John Doe",
+      "squadMembers": [
+        "Karen Kim",
+        "David Nguyen",
+        "Lena Lee"
+      ]
+    },
+    {
+      "id": "8",
+      "squadName": "QA Engineers",
+      "squadLeaderName": "Sarah Johnson",
+      "squadMembers": [
+        "David Kim",
+        "Lena Lee"
+      ]
+    }
+  ],
   "users": [
     {
       "id": 1,
@@ -7,9 +139,18 @@
       "squad": {
         "squadName": "Frontend",
         "squadLeaderName": "Ana Silva",
-        "squadMembers": ["Julia Costa", "Gustavo Santos"]
+        "squadMembers": [
+          "Julia Costa",
+          "Gustavo Santos"
+        ]
       },
-      "hardSkills": ["React JS", "Angular", "Vue", "Javascript", "CSS3"]
+      "hardSkills": [
+        "React JS",
+        "Angular",
+        "Vue",
+        "Javascript",
+        "CSS3"
+      ]
     },
     {
       "id": 2,
@@ -18,9 +159,20 @@
       "squad": {
         "squadName": "Backend",
         "squadLeaderName": "Lucas Santos",
-        "squadMembers": ["Mariana Oliveira", "Pedro Lima", "Gustavo Silva"]
+        "squadMembers": [
+          "Mariana Oliveira",
+          "Pedro Lima",
+          "Gustavo Silva"
+        ]
       },
-      "hardSkills": ["Node", "Nest JS", "Java", "C#", "SQL", "PostgreSQL"]
+      "hardSkills": [
+        "Node",
+        "Nest JS",
+        "Java",
+        "C#",
+        "SQL",
+        "PostgreSQL"
+      ]
     },
     {
       "id": 3,
@@ -29,9 +181,17 @@
       "squad": {
         "squadName": "Mobile",
         "squadLeaderName": "Julia Costa",
-        "squadMembers": ["Ana Costa", "Lucas Oliveira"]
+        "squadMembers": [
+          "Ana Costa",
+          "Lucas Oliveira"
+        ]
       },
-      "hardSkills": ["React Native", "Flutter", "Javascript", "AWS"]
+      "hardSkills": [
+        "React Native",
+        "Flutter",
+        "Javascript",
+        "AWS"
+      ]
     },
     {
       "id": 4,
@@ -40,9 +200,17 @@
       "squad": {
         "squadName": "Data Science",
         "squadLeaderName": "Gustavo Oliveira",
-        "squadMembers": ["Mariana Oliveira", "Lucas Costa"]
+        "squadMembers": [
+          "Mariana Oliveira",
+          "Lucas Costa"
+        ]
       },
-      "hardSkills": ["Python", "R", "Power BI", "SQL"]
+      "hardSkills": [
+        "Python",
+        "R",
+        "Power BI",
+        "SQL"
+      ]
     },
     {
       "id": 5,
@@ -51,9 +219,17 @@
       "squad": {
         "squadName": "DevOps",
         "squadLeaderName": "Gustavo Santos",
-        "squadMembers": ["Ana Costa", "Julia Santos"]
+        "squadMembers": [
+          "Ana Costa",
+          "Julia Santos"
+        ]
       },
-      "hardSkills": ["Docker", "AWS", "Selenium", "Jest"]
+      "hardSkills": [
+        "Docker",
+        "AWS",
+        "Selenium",
+        "Jest"
+      ]
     },
     {
       "id": 6,
@@ -62,9 +238,18 @@
       "squad": {
         "squadName": "Frontend",
         "squadLeaderName": "Lucas Oliveira",
-        "squadMembers": ["Pedro Costa", "Gustavo Santos"]
+        "squadMembers": [
+          "Pedro Costa",
+          "Gustavo Santos"
+        ]
       },
-      "hardSkills": ["React JS", "Angular", "Vue", "Javascript", "CSS3"]
+      "hardSkills": [
+        "React JS",
+        "Angular",
+        "Vue",
+        "Javascript",
+        "CSS3"
+      ]
     },
     {
       "id": 7,
@@ -73,9 +258,16 @@
       "squad": {
         "squadName": "Backend",
         "squadLeaderName": "Felipe Almeida",
-        "squadMembers": ["Pedro Oliveira", "Marcela Lima"]
+        "squadMembers": [
+          "Pedro Oliveira",
+          "Marcela Lima"
+        ]
       },
-      "hardSkills": ["Java", "Node", "PostgreSQL"]
+      "hardSkills": [
+        "Java",
+        "Node",
+        "PostgreSQL"
+      ]
     },
     {
       "id": 8,
@@ -84,9 +276,18 @@
       "squad": {
         "squadName": "Developers",
         "squadLeaderName": "Jane Smith",
-        "squadMembers": ["Jack Johnson", "Jenny Lee"]
+        "squadMembers": [
+          "Jack Johnson",
+          "Jenny Lee"
+        ]
       },
-      "hardSkills": ["React JS", "Javascript", "Node", "CSS3", "GIT"]
+      "hardSkills": [
+        "React JS",
+        "Javascript",
+        "Node",
+        "CSS3",
+        "GIT"
+      ]
     },
     {
       "id": 9,
@@ -95,9 +296,19 @@
       "squad": {
         "squadName": "Designers",
         "squadLeaderName": "John Doe",
-        "squadMembers": ["Karen Kim", "David Nguyen", "Lena Lee"]
+        "squadMembers": [
+          "Karen Kim",
+          "David Nguyen",
+          "Lena Lee"
+        ]
       },
-      "hardSkills": ["Figma", "Sketch", "Illustrator", "Photoshop", "CSS3"]
+      "hardSkills": [
+        "Figma",
+        "Sketch",
+        "Illustrator",
+        "Photoshop",
+        "CSS3"
+      ]
     },
     {
       "id": 10,
@@ -106,9 +317,18 @@
       "squad": {
         "squadName": "Developers",
         "squadLeaderName": "Jane Smith",
-        "squadMembers": ["Jack Johnson", "Jenny Lee"]
+        "squadMembers": [
+          "Jack Johnson",
+          "Jenny Lee"
+        ]
       },
-      "hardSkills": ["React JS", "Javascript", "Node", "CSS3", "GIT"]
+      "hardSkills": [
+        "React JS",
+        "Javascript",
+        "Node",
+        "CSS3",
+        "GIT"
+      ]
     },
     {
       "id": 11,
@@ -117,9 +337,18 @@
       "squad": {
         "squadName": "QA Engineers",
         "squadLeaderName": "Sarah Johnson",
-        "squadMembers": ["David Kim", "Lena Lee"]
+        "squadMembers": [
+          "David Kim",
+          "Lena Lee"
+        ]
       },
-      "hardSkills": ["Selenium", "Jest", "Node", "Javascript", "GIT"]
+      "hardSkills": [
+        "Selenium",
+        "Jest",
+        "Node",
+        "Javascript",
+        "GIT"
+      ]
     },
     {
       "id": 12,
@@ -128,9 +357,18 @@
       "squad": {
         "squadName": "Data Science",
         "squadLeaderName": "Emily Smith",
-        "squadMembers": ["John Lee", "Karen Kim"]
+        "squadMembers": [
+          "John Lee",
+          "Karen Kim"
+        ]
       },
-      "hardSkills": ["Python", "R", "SQL", "Power BI", "Tableau"]
+      "hardSkills": [
+        "Python",
+        "R",
+        "SQL",
+        "Power BI",
+        "Tableau"
+      ]
     },
     {
       "id": 13,
@@ -139,9 +377,17 @@
       "squad": {
         "squadName": "Developers",
         "squadLeaderName": "Jane Smith",
-        "squadMembers": ["Jack Johnson", "Jenny Lee"]
+        "squadMembers": [
+          "Jack Johnson",
+          "Jenny Lee"
+        ]
       },
-      "hardSkills": ["React JS", "Javascript", "CSS3", "GIT"]
+      "hardSkills": [
+        "React JS",
+        "Javascript",
+        "CSS3",
+        "GIT"
+      ]
     }
   ]
 }

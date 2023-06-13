@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { api } from "@/lib/axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import {
@@ -15,8 +16,8 @@ import {
   Select,
   Switch,
   useForm,
-  MultiValueProps,
   MultiSelect,
+  MultiValueProps,
   Options,
 } from "@controle-devs-ui/react";
 
@@ -24,24 +25,20 @@ import "@controle-devs-ui/react/dist/index.css";
 
 import * as Styles from "./styles";
 
-const skills: Options[] = [
-  { value: "1", label: "React Js" },
-  { value: "2", label: "React Native" },
-  { value: "3", label: "Angular" },
-  { value: "4", label: "C#" },
-];
-
-const squad = [
-  { value: "1", label: "Data Science" },
-  { value: "2", label: "Frontend" },
-  { value: "3", label: "Backend" },
-];
-
+export interface SquadInfo {
+  id: string;
+  squadName: string;
+  squadLeaderName: string;
+  squadMembers: string[];
+}
 export const NewUserForm = () => {
-  const [inactive, setInactive] = useState<boolean>(false);
+  const [squads, setSquads] = useState<Options[]>([]);
+  const [skills, setSkills] = useState<Options[]>([]);
+  const [squadInfo, setSquadInfo] = useState<SquadInfo[]>([]);
+  const [key, setKey] = useState<number>(+new Date());
 
   const formSchema = z.object({
-    username: z
+    fullName: z
       .string()
       .min(2, {
         message: "O nome de usuário deve ter pelo menos 2 caracteres..",
@@ -64,16 +61,16 @@ export const NewUserForm = () => {
     squad: z.string().nonempty("Selecione a squad"),
     biography: z.optional(z.string()),
     inactiveUser: z.optional(z.boolean()),
-    photo: z.custom<File | null>(),
+    imagePath: z.custom<File | null>(),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      photo: null,
+      imagePath: null,
       inactiveUser: false,
       biography: "",
-      username: "",
+      fullName: "",
       email: "",
       description: "",
       hardSkills: [],
@@ -82,25 +79,63 @@ export const NewUserForm = () => {
   });
 
   const handleImageChange = (file: File) => {
-    form.setValue("photo", file);
+    form.setValue("imagePath", file);
   };
 
   const handleRemoveImage = () => {
-    form.setValue("photo", null);
+    form.setValue("imagePath", null);
   };
   const onChangeHardSkills = (selectedOptions: MultiValueProps) => {
     const options = selectedOptions.map((option) => option.label);
     form.setValue("hardSkills", options);
   };
 
-  const onChangeInactiveUser = () => {
-    setInactive((prevState) => !prevState);
-    form.setValue("inactiveUser", !inactive);
+  const handleClearFields = () => {
+    form.reset();
   };
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  const generateRandomImage = () => {
+    const randomIndex = Math.floor(Math.random() * 100) + 1;
+    return `https://randomuser.me/api/portraits/women/${randomIndex}.jpg`;
+  };
+
+  const handleSquad = (value: string) => {
+    return squadInfo.filter((squad) => squad.squadName === value);
+  };
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    await api.post("users", {
+      ...values,
+      imagePath: values.imagePath !== null ? generateRandomImage() : null,
+      squad: handleSquad(values.squad),
+    });
+    handleClearFields();
+    setKey(+new Date());
   }
+
+  const loadSquad = async () => {
+    const response = await api.get("/squad");
+
+    setSquads(response.data);
+  };
+
+  const loadSkills = async () => {
+    const response = await api.get("/skills");
+
+    setSkills(response.data);
+  };
+
+  const loadSquadInfo = async () => {
+    const response = await api.get("/squadInfo");
+
+    setSquadInfo(response.data);
+  };
+
+  useEffect(() => {
+    loadSquad();
+    loadSkills();
+    loadSquadInfo();
+  }, []);
 
   return (
     <div className={Styles.container()}>
@@ -112,7 +147,7 @@ export const NewUserForm = () => {
           <div className={Styles.formContent()}>
             <div className={Styles.contentLeftFields()}>
               <FormField
-                name="photo"
+                name="imagePath"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className={Styles.photo()}>
@@ -120,8 +155,9 @@ export const NewUserForm = () => {
                     </FormLabel>
                     <FormControl>
                       <ImageUpload
+                        key={key}
                         {...field}
-                        onChange={(file) => handleImageChange(file)}
+                        onChange={handleImageChange}
                         onRemove={handleRemoveImage}
                         accept="image/*"
                       />
@@ -137,12 +173,13 @@ export const NewUserForm = () => {
                       <Switch
                         label=" O usuário está inativo? "
                         root={{
-                          defaultChecked: inactive,
-                          checked: inactive,
-                          onCheckedChange: onChangeInactiveUser,
+                          defaultChecked: field.value,
+                          checked: field.value,
+                          onCheckedChange: field.onChange,
                           disabled: false,
                           required: false,
                           name: "inactiveUser",
+                          value: field.value,
                         }}
                         thumb={{ asChild: false }}
                         {...field}
@@ -171,7 +208,7 @@ export const NewUserForm = () => {
               />
               <FormField
                 control={form.control}
-                name="username"
+                name="fullName"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className={Styles.label()}>
@@ -218,10 +255,11 @@ export const NewUserForm = () => {
                     <FormLabel className={Styles.label()}>Squad:</FormLabel>
                     <FormControl>
                       <Select
+                        key={key}
                         {...field}
                         descriptiveTextForAccessibility="select com opções de squad"
                         placeholder="Selecione a squad..."
-                        options={squad}
+                        options={squads}
                         root={{
                           onValueChange: field.onChange,
                         }}
@@ -241,6 +279,7 @@ export const NewUserForm = () => {
                     </FormLabel>
                     <FormControl>
                       <MultiSelect
+                        key={key}
                         {...field}
                         checkbox={true}
                         select={{
@@ -257,7 +296,11 @@ export const NewUserForm = () => {
                 )}
               />
 
-              <Button type="submit" text="Cadastrar" />
+              <Button
+                type="submit"
+                text="Cadastrar"
+                disabled={form.formState.isSubmitting}
+              />
             </div>
           </div>
         </form>
