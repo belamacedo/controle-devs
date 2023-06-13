@@ -87,9 +87,15 @@ export const NewUserForm = () => {
     form.reset();
   };
 
+  const generateRandomImage = () => {
+    const randomIndex = Math.floor(Math.random() * 100) + 1;
+    return `https://randomuser.me/api/portraits/women/${randomIndex}.jpg`;
+  };
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     await api.post("users", {
       ...values,
+      imagePath: generateRandomImage(),
     });
     handleClearFields();
     setKey(+new Date());
