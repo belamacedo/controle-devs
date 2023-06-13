@@ -12,7 +12,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@controle-devs-ui/react": "^3.0.1",
+    "@controle-devs-ui/react": "^3.0.2",
     "@radix-ui/colors": "^0.1.8",
     "@radix-ui/react-alert-dialog": "^1.0.3",
     "@radix-ui/react-checkbox": "^1.0.3",
@@ -35,8 +35,10 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.9.0",
+    "react-hook-form": "^7.44.3",
     "tailwindcss": "3.3.2",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.0.10",
