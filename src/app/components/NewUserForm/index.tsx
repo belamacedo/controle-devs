@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { api } from "@/lib/axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import {
@@ -15,19 +16,19 @@ import {
   Select,
   Switch,
   useForm,
-  MultiValueProps,
   MultiSelect,
+  MultiValueProps,
   Options,
 } from "@controle-devs-ui/react";
 
 import "@controle-devs-ui/react/dist/index.css";
 
 import * as Styles from "./styles";
-import { api } from "@/lib/axios";
 
 export const NewUserForm = () => {
   const [squads, setSquads] = useState<Options[]>([]);
   const [skills, setSkills] = useState<Options[]>([]);
+  const [key, setKey] = useState<number>(+new Date());
 
   const formSchema = z.object({
     username: z
@@ -83,15 +84,15 @@ export const NewUserForm = () => {
   };
 
   const handleClearFields = () => {
-    form.resetField("imagePath");
+    form.reset();
   };
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     await api.post("users", {
       ...values,
     });
-    console.log(values);
     handleClearFields();
+    setKey(+new Date());
   }
 
   const loadSquad = async () => {
@@ -129,6 +130,7 @@ export const NewUserForm = () => {
                     </FormLabel>
                     <FormControl>
                       <ImageUpload
+                        key={key}
                         {...field}
                         onChange={handleImageChange}
                         onRemove={handleRemoveImage}
@@ -228,6 +230,7 @@ export const NewUserForm = () => {
                     <FormLabel className={Styles.label()}>Squad:</FormLabel>
                     <FormControl>
                       <Select
+                        key={key}
                         {...field}
                         descriptiveTextForAccessibility="select com opções de squad"
                         placeholder="Selecione a squad..."
@@ -251,6 +254,7 @@ export const NewUserForm = () => {
                     </FormLabel>
                     <FormControl>
                       <MultiSelect
+                        key={key}
                         {...field}
                         checkbox={true}
                         select={{
