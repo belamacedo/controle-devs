@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import {
@@ -23,22 +23,11 @@ import {
 import "@controle-devs-ui/react/dist/index.css";
 
 import * as Styles from "./styles";
-
-const skills: Options[] = [
-  { value: "1", label: "React Js" },
-  { value: "2", label: "React Native" },
-  { value: "3", label: "Angular" },
-  { value: "4", label: "C#" },
-];
-
-const squad = [
-  { value: "1", label: "Data Science" },
-  { value: "2", label: "Frontend" },
-  { value: "3", label: "Backend" },
-];
+import { api } from "@/lib/axios";
 
 export const NewUserForm = () => {
-  const [inactive, setInactive] = useState<boolean>(false);
+  const [squads, setSquads] = useState<Options[]>([]);
+  const [skills, setSkills] = useState<Options[]>([]);
 
   const formSchema = z.object({
     username: z
@@ -64,13 +53,13 @@ export const NewUserForm = () => {
     squad: z.string().nonempty("Selecione a squad"),
     biography: z.optional(z.string()),
     inactiveUser: z.optional(z.boolean()),
-    photo: z.custom<File | null>(),
+    imagePath: z.custom<File | null>(),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      photo: null,
+      imagePath: null,
       inactiveUser: false,
       biography: "",
       username: "",
@@ -82,25 +71,45 @@ export const NewUserForm = () => {
   });
 
   const handleImageChange = (file: File) => {
-    form.setValue("photo", file);
+    form.setValue("imagePath", file);
   };
 
   const handleRemoveImage = () => {
-    form.setValue("photo", null);
+    form.setValue("imagePath", null);
   };
   const onChangeHardSkills = (selectedOptions: MultiValueProps) => {
     const options = selectedOptions.map((option) => option.label);
     form.setValue("hardSkills", options);
   };
 
-  const onChangeInactiveUser = () => {
-    setInactive((prevState) => !prevState);
-    form.setValue("inactiveUser", !inactive);
+  const handleClearFields = () => {
+    form.resetField("imagePath");
   };
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    await api.post("users", {
+      ...values,
+    });
     console.log(values);
+    handleClearFields();
   }
+
+  const loadSquad = async () => {
+    const response = await api.get("/squad");
+
+    setSquads(response.data);
+  };
+
+  const loadSkills = async () => {
+    const response = await api.get("/skills");
+
+    setSkills(response.data);
+  };
+
+  useEffect(() => {
+    loadSquad();
+    loadSkills();
+  }, []);
 
   return (
     <div className={Styles.container()}>
@@ -112,7 +121,7 @@ export const NewUserForm = () => {
           <div className={Styles.formContent()}>
             <div className={Styles.contentLeftFields()}>
               <FormField
-                name="photo"
+                name="imagePath"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className={Styles.photo()}>
@@ -121,7 +130,7 @@ export const NewUserForm = () => {
                     <FormControl>
                       <ImageUpload
                         {...field}
-                        onChange={(file) => handleImageChange(file)}
+                        onChange={handleImageChange}
                         onRemove={handleRemoveImage}
                         accept="image/*"
                       />
@@ -137,12 +146,13 @@ export const NewUserForm = () => {
                       <Switch
                         label=" O usuário está inativo? "
                         root={{
-                          defaultChecked: inactive,
-                          checked: inactive,
-                          onCheckedChange: onChangeInactiveUser,
+                          defaultChecked: field.value,
+                          checked: field.value,
+                          onCheckedChange: field.onChange,
                           disabled: false,
                           required: false,
                           name: "inactiveUser",
+                          value: field.value,
                         }}
                         thumb={{ asChild: false }}
                         {...field}
@@ -221,7 +231,7 @@ export const NewUserForm = () => {
                         {...field}
                         descriptiveTextForAccessibility="select com opções de squad"
                         placeholder="Selecione a squad..."
-                        options={squad}
+                        options={squads}
                         root={{
                           onValueChange: field.onChange,
                         }}
@@ -257,7 +267,11 @@ export const NewUserForm = () => {
                 )}
               />
 
-              <Button type="submit" text="Cadastrar" />
+              <Button
+                type="submit"
+                text="Cadastrar"
+                disabled={form.formState.isSubmitting}
+              />
             </div>
           </div>
         </form>
