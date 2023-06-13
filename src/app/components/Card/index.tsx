@@ -1,10 +1,10 @@
-"use client";
-import React, { ReactNode } from "react";
-import { Pencil2Icon, TrashIcon } from "@radix-ui/react-icons";
+'use client';
+import React, { ReactNode } from 'react';
+import { Pencil2Icon, TrashIcon } from '@radix-ui/react-icons';
 
-import { Button } from "@controle-devs-ui/react";
+import { Button } from '@controle-devs-ui/react';
 
-import * as Styles from "./styles";
+import * as Styles from './styles';
 
 export interface CardProps {
   title: ReactNode | string;
@@ -40,7 +40,7 @@ export const Card = ({
       ></Button>
     </div>
     <div className={Styles.imageContainer()}>
-      <img className={Styles.imageContent()} alt="profile" src={image} />
+      <img className={Styles.imageContent()} alt='profile' src={image} />
     </div>
 
     <div className={Styles.title()}>{title}</div>
@@ -55,7 +55,7 @@ export const Card = ({
     </div>
     {moreDetails && (
       <div className={Styles.moreDetails()}>
-        <Button size={"small"} text="Mais detalhes" onClick={onClick} />
+        <Button size={'small'} text='Mais detalhes' onClick={onClick} />
       </div>
     )}
   </div>

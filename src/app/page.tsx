@@ -1,8 +1,8 @@
 "use client";
 import "@controle-devs-ui/react/dist/index.css";
 
-import { Dropdown } from "@controle-devs-ui/react";
+import HomePage from "./pages/Home/Home";
 
 export default function Home() {
-  return <Dropdown />;
+  return <HomePage />;
 }
