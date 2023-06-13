@@ -1,6 +1,6 @@
-import React, { ReactNode } from 'react';
-import Logo from '../Logo';
-import * as Styles from './styles';
+import React, { ReactNode } from "react";
+import Logo from "../Logo";
+import * as Styles from "./styles";
 
 interface Props {
   children: ReactNode;
