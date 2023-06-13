@@ -11,6 +11,26 @@
     {
       "value": "3",
       "label": "Backend"
+    },
+    {
+      "value": "4",
+      "label": "Mobile"
+    },
+    {
+      "value": "5",
+      "label": "DevOps"
+    },
+    {
+      "value": "6",
+      "label": "Developers"
+    },
+    {
+      "value": "7",
+      "label": "Designers"
+    },
+    {
+      "value": "8",
+      "label": "QA Engineers"
     }
   ],
   "skills": [
@@ -29,6 +49,86 @@
     {
       "value": "4",
       "label": "C#"
+    },
+    {
+      "value": "5",
+      "label": "Mobile"
+    }
+  ],
+  "squadInfo": [
+    {
+      "id": "1",
+      "squadName": "Frontend",
+      "squadLeaderName": "Ana Silva",
+      "squadMembers": [
+        "Julia Costa",
+        "Gustavo Santos"
+      ]
+    },
+    {
+      "id": "2",
+      "squadName": "Backend",
+      "squadLeaderName": "Lucas Santos",
+      "squadMembers": [
+        "Mariana Oliveira",
+        "Pedro Lima",
+        "Gustavo Silva"
+      ]
+    },
+    {
+      "id": "3",
+      "squadName": "Mobile",
+      "squadLeaderName": "Julia Costa",
+      "squadMembers": [
+        "Ana Costa",
+        "Lucas Oliveira"
+      ]
+    },
+    {
+      "id": "4",
+      "squadName": "Data Science",
+      "squadLeaderName": "Gustavo Oliveira",
+      "squadMembers": [
+        "Mariana Oliveira",
+        "Lucas Costa"
+      ]
+    },
+    {
+      "id": "5",
+      "squadName": "DevOps",
+      "squadLeaderName": "Gustavo Santos",
+      "squadMembers": [
+        "Ana Costa",
+        "Julia Santos"
+      ]
+    },
+    {
+      "id": "6",
+      "squadName": "Developers",
+      "squadLeaderName": "Jane Smith",
+      "squadMembers": [
+        "Jack Johnson",
+        "Jenny Lee"
+      ]
+    },
+    {
+      "id": "7",
+      "squadName": "Designers",
+      "squadLeaderName": "John Doe",
+      "squadMembers": [
+        "Karen Kim",
+        "David Nguyen",
+        "Lena Lee"
+      ]
+    },
+    {
+      "id": "8",
+      "squadName": "QA Engineers",
+      "squadLeaderName": "Sarah Johnson",
+      "squadMembers": [
+        "David Kim",
+        "Lena Lee"
+      ]
     }
   ],
   "users": [
@@ -288,6 +388,6 @@
         "CSS3",
         "GIT"
       ]
-    }   
+    }
   ]
 }

@@ -25,13 +25,20 @@ import "@controle-devs-ui/react/dist/index.css";
 
 import * as Styles from "./styles";
 
+export interface SquadInfo {
+  id: string;
+  squadName: string;
+  squadLeaderName: string;
+  squadMembers: string[];
+}
 export const NewUserForm = () => {
   const [squads, setSquads] = useState<Options[]>([]);
   const [skills, setSkills] = useState<Options[]>([]);
+  const [squadInfo, setSquadInfo] = useState<SquadInfo[]>([]);
   const [key, setKey] = useState<number>(+new Date());
 
   const formSchema = z.object({
-    username: z
+    fullName: z
       .string()
       .min(2, {
         message: "O nome de usuário deve ter pelo menos 2 caracteres..",
@@ -63,7 +70,7 @@ export const NewUserForm = () => {
       imagePath: null,
       inactiveUser: false,
       biography: "",
-      username: "",
+      fullName: "",
       email: "",
       description: "",
       hardSkills: [],
@@ -92,10 +99,15 @@ export const NewUserForm = () => {
     return `https://randomuser.me/api/portraits/women/${randomIndex}.jpg`;
   };
 
+  const handleSquad = (value: string) => {
+    return squadInfo.filter((squad) => squad.squadName === value);
+  };
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     await api.post("users", {
       ...values,
-      imagePath: generateRandomImage(),
+      imagePath: values.imagePath !== null ? generateRandomImage() : null,
+      squad: handleSquad(values.squad),
     });
     handleClearFields();
     setKey(+new Date());
@@ -113,9 +125,16 @@ export const NewUserForm = () => {
     setSkills(response.data);
   };
 
+  const loadSquadInfo = async () => {
+    const response = await api.get("/squadInfo");
+
+    setSquadInfo(response.data);
+  };
+
   useEffect(() => {
     loadSquad();
     loadSkills();
+    loadSquadInfo();
   }, []);
 
   return (
@@ -189,7 +208,7 @@ export const NewUserForm = () => {
               />
               <FormField
                 control={form.control}
-                name="username"
+                name="fullName"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className={Styles.label()}>
