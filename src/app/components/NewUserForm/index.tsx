@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { api } from "@/lib/axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import {
@@ -23,14 +22,14 @@ import {
 
 import "@controle-devs-ui/react/dist/index.css";
 
-import * as Styles from "./styles";
+import { getSquadQuery } from "@/services/squad/squad-service";
+import { getSquadInfoQuery } from "@/services/squadInfo/squadInfo-service";
 
-export interface SquadInfo {
-  id: string;
-  squadName: string;
-  squadLeaderName: string;
-  squadMembers: string[];
-}
+import * as Styles from "./styles";
+import { getSkillsQuery } from "@/services/skills/skills-service";
+import { addNewUserMutation } from "@/services/user/user-service";
+import { SquadInfo } from "@/services/squadInfo/squadInfo";
+
 export const NewUserForm = () => {
   const [squads, setSquads] = useState<Options[]>([]);
   const [skills, setSkills] = useState<Options[]>([]);
@@ -104,31 +103,48 @@ export const NewUserForm = () => {
   };
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    await api.post("users", {
-      ...values,
-      imagePath: values.imagePath !== null ? generateRandomImage() : null,
-      squad: handleSquad(values.squad),
-    });
-    handleClearFields();
-    setKey(+new Date());
+    try {
+      await addNewUserMutation({
+        ...values,
+        imagePath: values.imagePath !== null ? generateRandomImage() : null,
+        squad: handleSquad(values.squad),
+      });
+
+      handleClearFields();
+      setKey(+new Date());
+    } catch (error) {
+      console.error("Erro ao cadastrar usuário:", error);
+    }
   }
 
   const loadSquad = async () => {
-    const response = await api.get("/squad");
+    try {
+      const data = await getSquadQuery();
 
-    setSquads(response.data);
+      setSquads(data);
+    } catch (error) {
+      console.error("Erro ao carregar as squad:", error);
+    }
   };
 
   const loadSkills = async () => {
-    const response = await api.get("/skills");
+    try {
+      const data = await getSkillsQuery();
 
-    setSkills(response.data);
+      setSkills(data);
+    } catch (error) {
+      console.error("Erro ao carregar as habilidades:", error);
+    }
   };
 
   const loadSquadInfo = async () => {
-    const response = await api.get("/squadInfo");
+    try {
+      const data = await getSquadInfoQuery();
 
-    setSquadInfo(response.data);
+      setSquadInfo(data);
+    } catch (error) {
+      console.error("Erro ao carregar as informações das squads:", error);
+    }
   };
 
   useEffect(() => {
