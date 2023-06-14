@@ -1,6 +1,6 @@
 import { api } from "@/lib/axios";
 
-export const squadInfoQuery = async () => {
+export const getSquadInfoQuery = async () => {
   const response = await api.get("/squadInfo");
 
   return response.data;

@@ -1,6 +1,6 @@
 import { api } from "@/lib/axios";
 
-export const skillsQuery = async () => {
+export const getSkillsQuery = async () => {
   const response = await api.get("/skills");
 
   return response.data;

@@ -22,12 +22,12 @@ import {
 
 import "@controle-devs-ui/react/dist/index.css";
 
-import { squadQuery } from "@/services/squad/squad-service";
-import { squadInfoQuery } from "@/services/squadInfo/squadInfo-service";
+import { getSquadQuery } from "@/services/squad/squad-service";
+import { getSquadInfoQuery } from "@/services/squadInfo/squadInfo-service";
 
 import * as Styles from "./styles";
-import { skillsQuery } from "@/services/skills/skills-service";
-import { newUserQuery } from "@/services/user/user-service";
+import { getSkillsQuery } from "@/services/skills/skills-service";
+import { addNewUserMutation } from "@/services/user/user-service";
 import { SquadInfo } from "@/services/squadInfo/squadInfo";
 
 export const NewUserForm = () => {
@@ -104,7 +104,7 @@ export const NewUserForm = () => {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      await newUserQuery({
+      await addNewUserMutation({
         ...values,
         imagePath: values.imagePath !== null ? generateRandomImage() : null,
         squad: handleSquad(values.squad),
@@ -119,7 +119,7 @@ export const NewUserForm = () => {
 
   const loadSquad = async () => {
     try {
-      const data = await squadQuery();
+      const data = await getSquadQuery();
 
       setSquads(data);
     } catch (error) {
@@ -129,7 +129,7 @@ export const NewUserForm = () => {
 
   const loadSkills = async () => {
     try {
-      const data = await skillsQuery();
+      const data = await getSkillsQuery();
 
       setSkills(data);
     } catch (error) {
@@ -139,7 +139,7 @@ export const NewUserForm = () => {
 
   const loadSquadInfo = async () => {
     try {
-      const data = await squadInfoQuery();
+      const data = await getSquadInfoQuery();
 
       setSquadInfo(data);
     } catch (error) {
