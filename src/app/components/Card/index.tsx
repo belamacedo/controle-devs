@@ -45,18 +45,19 @@ export const Card = ({
 
     <div className={Styles.title()}>{title}</div>
     <div className={Styles.children()}>{children}</div>
-
-    <div className={Styles.skillsContent()}>
-      {skills?.map((skill) => (
-        <span key={skill} className={Styles.skills()}>
-          {skill}
-        </span>
-      ))}
-    </div>
-    {moreDetails && (
-      <div className={Styles.moreDetails()}>
-        <Button size={'small'} text='Mais detalhes' onClick={onClick} />
+    <div className={Styles.content()}>
+      <div className={Styles.skillsContent()}>
+        {skills?.map((skill) => (
+          <span key={skill} className={Styles.skills()}>
+            {skill}
+          </span>
+        ))}
       </div>
-    )}
+      {moreDetails && (
+        <div className={Styles.moreDetails()}>
+          <Button size={"small"} text="Mais detalhes" onClick={onClick} />
+        </div>
+      )}
+    </div>
   </div>
 );
