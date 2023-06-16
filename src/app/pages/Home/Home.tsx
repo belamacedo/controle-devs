@@ -1,23 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Card } from '@/app/components/Card';
 import { Button, SearchInput } from '@controle-devs-ui/react';
+import { Card } from '@/app/components/Card';
+import { UserProps } from '@/app/models/User';
 import * as Styles from './styles';
-
-interface UserInfo {
-  id: number;
-  imagePath: string;
-  fullName: string;
-  jobPosition: string;
-  hardSkills: string[];
-  bio: string;
-}
 
 const MAX_CARDS = 6;
 
 const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [data, setData] = useState<UserInfo[]>([]);
+  const [data, setData] = useState<UserProps[]>([]);
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
@@ -62,11 +54,8 @@ const HomePage = () => {
       const hardSkillsMatch = item.hardSkills.some((skill) =>
         skill.toLowerCase().includes(searchQuery.toLowerCase())
       );
-      const bioMatch = item.bio
-        .toLowerCase()
-        .includes(searchQuery.toLowerCase());
 
-      return fullNameMatch || bioMatch || hardSkillsMatch;
+      return fullNameMatch || hardSkillsMatch;
     });
 
   const visibleData = showAll ? filteredData : filteredData.slice(0, MAX_CARDS);
@@ -93,10 +82,11 @@ const HomePage = () => {
               moreDetails={true}
               key={item.id}
               user={{
+                id: item.id,
                 fullName: item.fullName,
-                jobDescription: item.jobPosition,
-                image: item.imagePath,
-                skills: item.hardSkills,
+                jobPosition: item.jobPosition,
+                imagePath: item.imagePath,
+                hardSkills: item.hardSkills,
               }}
               onClick={() => console.log('onClick')}
               onChange={() => console.log('onChange')}
