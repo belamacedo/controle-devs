@@ -75,20 +75,20 @@ const HomePage = () => {
       <div className={Styles.cardContainer()}>
         {loadingIndicator}
         {filteredData &&
-          visibleData.map((item, index) => (
+          visibleData.map((user, index) => (
             <UserCard
               moreDetails={true}
-              key={item.id}
+              key={user.id}
               user={{
-                id: item.id,
-                fullName: item.fullName,
-                jobPosition: item.jobPosition,
-                imagePath: item.imagePath,
-                hardSkills: item.hardSkills,
+                id: user.id,
+                fullName: user.fullName,
+                jobPosition: user.jobPosition,
+                imagePath: user.imagePath,
+                hardSkills: user.hardSkills,
               }}
               onClick={() => console.log('onClick')}
               onChange={() => console.log('onChange')}
-              onDelete={() => handleCardDelete(item.id)}
+              onDelete={() => handleCardDelete(user.id)}
               className={getCardClassName(index)}
             />
           ))}
