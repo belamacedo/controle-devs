@@ -103,16 +103,15 @@ const HomePage = () => {
             />
           ))}
       </div>
-      {!showAll && filteredData.length > MAX_CARDS && (
+      {!showAll && filteredData.length > MAX_CARDS ? (
         <div className={Styles.button()}>
           <Button text='Ver mais' onClick={handleShowAll} />
         </div>
-      )}
-      {showAll && (
+      ) : showAll && filteredData.length > MAX_CARDS ? (
         <div className={Styles.button()}>
           <Button text='Ver menos' onClick={handleShowLess} />
         </div>
-      )}
+      ) : null}
     </div>
   );
 };
