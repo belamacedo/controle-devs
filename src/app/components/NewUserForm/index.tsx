@@ -209,11 +209,8 @@ export const NewUserForm = () => {
                         <Switch
                           label=" O usuário está inativo? "
                           root={{
-                            defaultChecked: field.value,
                             checked: field.value,
                             onCheckedChange: field.onChange,
-                            disabled: false,
-                            required: false,
                             name: "inactiveUser",
                             value: field.value,
                           }}
