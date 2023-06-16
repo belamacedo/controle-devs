@@ -106,13 +106,6 @@ export const NewUserForm = () => {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      toast({
-        title: "Sucesso!",
-        description: "Usuário cadastrado com sucesso",
-        classNameContent: "flex flex-row gap-1 pl-2",
-        className: "p-4",
-        variant: "success",
-      });
       await addNewUserMutation({
         ...values,
         imagePath: values.imagePath !== null ? generateRandomImage() : null,
@@ -121,6 +114,13 @@ export const NewUserForm = () => {
 
       handleClearFields();
       setKey(+new Date());
+      toast({
+        title: "Sucesso!",
+        description: "Usuário cadastrado com sucesso",
+        classNameContent: "flex flex-row gap-1 pl-2",
+        className: "p-4",
+        variant: "success",
+      });
     } catch (error) {
       console.error("Erro ao cadastrar usuário:", error);
       toast({
