@@ -1,5 +1,8 @@
 "use client";
+import "@controle-devs-ui/react/dist/index.css";
+
+import HomePage from "./pages/Home";
 
 export default function Home() {
-  return <h1>Home</h1>;
+  return <HomePage />;
 }
