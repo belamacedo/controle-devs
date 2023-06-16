@@ -92,10 +92,12 @@ const HomePage = () => {
             <Card
               moreDetails={true}
               key={item.id}
-              title={item.fullName}
-              subtitle={item.jobPosition}
-              image={item.imagePath}
-              skills={item.hardSkills}
+              user={{
+                fullName: item.fullName,
+                jobDescription: item.jobPosition,
+                image: item.imagePath,
+                skills: item.hardSkills,
+              }}
               onClick={() => console.log('onClick')}
               onChange={() => console.log('onChange')}
               onDelete={() => handleCardDelete(item.id)}

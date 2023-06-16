@@ -1,16 +1,20 @@
 'use client';
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { Pencil2Icon, TrashIcon } from '@radix-ui/react-icons';
 
 import { Button } from '@controle-devs-ui/react';
 
 import * as Styles from './styles';
 
-export interface CardProps {
-  title: ReactNode | string;
-  subtitle: string;
+interface UserProps {
+  fullName: string;
+  jobDescription: string;
   image: string;
-  skills: string[];
+  skills: string[],
+}
+
+export interface CardProps {
+  user: UserProps;
   className?: string;
   moreDetails?: boolean;
   onClick: () => void;
@@ -18,17 +22,14 @@ export interface CardProps {
   onDelete: () => void;
 }
 export const Card = ({
-  title,
-  subtitle,
-  image,
-  skills,
+  user,
   onChange,
   onDelete,
   onClick,
   moreDetails,
   className,
 }: CardProps) => {
-  const skillsContainerHeight = skills.length > 6 ? '28' : 'auto';
+  const skillsContainerHeight = user.skills.length > 6 ? '28' : 'auto';
 
   return (
     <div className={`${Styles.container()} ${className}`}>
@@ -46,17 +47,17 @@ export const Card = ({
       </div>
       <div className={Styles.content()}>
         <div className={Styles.imageContainer()}>
-          <img className={Styles.imageContent()} alt='profile' src={image} />
+          <img className={Styles.imageContent()} alt='profile' src={user.image} />
         </div>
 
-        <div className={Styles.title()}>{title}</div>
-        <div className={Styles.subtitle()}>{subtitle}</div>
+        <div className={Styles.title()}>{user.fullName}</div>
+        <div className={Styles.subtitle()}>{user.jobDescription}</div>
 
         <div
           className={`${Styles.skillsContainer()} h-${skillsContainerHeight}`}
         >
           <div className={Styles.skillsContent()}>
-            {skills?.map((skill) => (
+            {user.skills?.map((skill) => (
               <span key={skill} className={Styles.skills()}>
                 {skill}
               </span>
