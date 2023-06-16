@@ -14,7 +14,7 @@ export interface CardProps {
   onChange: () => void;
   onDelete: () => void;
 }
-export const Card = ({
+export const UserCard = ({
   user,
   onChange,
   onDelete,

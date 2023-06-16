@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button, SearchInput } from '@controle-devs-ui/react';
 import { deleteUser, getUsers } from '@/services/user/user-service';
-import { Card } from '@/app/components/Card';
+import { UserCard } from '@/app/components/UserCard';
 import { UserProps } from '@/app/models/User';
 import * as Styles from './styles';
 
@@ -77,7 +77,7 @@ const HomePage = () => {
         {loadingIndicator}
         {filteredData &&
           visibleData.map((item, index) => (
-            <Card
+            <UserCard
               moreDetails={true}
               key={item.id}
               user={{
