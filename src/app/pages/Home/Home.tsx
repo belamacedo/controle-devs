@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button, SearchInput } from '@controle-devs-ui/react';
+import { deleteUser, getUsers } from '@/services/user/user-service';
 import { Card } from '@/app/components/Card';
 import { UserProps } from '@/app/models/User';
 import * as Styles from './styles';
@@ -13,10 +14,9 @@ const HomePage = () => {
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3001/users')
-      .then((response) => {
-        setData(response.data);
+    getUsers()
+      .then((data) => {
+        setData(data);
       })
       .catch((error) => {
         console.log(error);
@@ -35,8 +35,7 @@ const HomePage = () => {
     const updatedData = data.filter((item) => item.id !== id);
     setData(updatedData);
 
-    axios
-      .delete(`http://localhost:3001/users/${id}`)
+    deleteUser(id)
       .then((response) => {
         console.log('Card excluído com sucesso!');
       })
