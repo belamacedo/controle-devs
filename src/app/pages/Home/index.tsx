@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Button, SearchInput } from '@controle-devs-ui/react';
 import { deleteUser, getUsers } from '@/services/user/user-service';
 import { UserCard } from '@/app/components/UserCard';
