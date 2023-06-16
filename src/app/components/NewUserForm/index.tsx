@@ -18,6 +18,8 @@ import {
   MultiSelect,
   MultiValueProps,
   Options,
+  Tooltip,
+  toast,
 } from "@controle-devs-ui/react";
 
 import "@controle-devs-ui/react/dist/index.css";
@@ -104,6 +106,13 @@ export const NewUserForm = () => {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
+      toast({
+        title: "Sucesso!",
+        description: "Usuário cadastrado com sucesso",
+        classNameContent: "flex flex-row gap-1 pl-2",
+        className: "p-4",
+        variant: "success",
+      });
       await addNewUserMutation({
         ...values,
         imagePath: values.imagePath !== null ? generateRandomImage() : null,
@@ -114,6 +123,13 @@ export const NewUserForm = () => {
       setKey(+new Date());
     } catch (error) {
       console.error("Erro ao cadastrar usuário:", error);
+      toast({
+        title: "Erro!",
+        description: "Erro ao cadastrar usuário",
+        classNameContent: "flex flex-row gap-1 pl-2",
+        className: "p-4",
+        variant: "error",
+      });
     }
   }
 
@@ -184,25 +200,30 @@ export const NewUserForm = () => {
               <FormField
                 name="inactiveUser"
                 render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Switch
-                        label=" O usuário está inativo? "
-                        root={{
-                          defaultChecked: field.value,
-                          checked: field.value,
-                          onCheckedChange: field.onChange,
-                          disabled: false,
-                          required: false,
-                          name: "inactiveUser",
-                          value: field.value,
-                        }}
-                        thumb={{ asChild: false }}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage className={Styles.message()} />
-                  </FormItem>
+                  <Tooltip
+                    message=" Usuários que estão de férias, licença ou que foram desligados."
+                    content={{ sideOffset: 5 }}
+                  >
+                    <FormItem>
+                      <FormControl>
+                        <Switch
+                          label=" O usuário está inativo? "
+                          root={{
+                            defaultChecked: field.value,
+                            checked: field.value,
+                            onCheckedChange: field.onChange,
+                            disabled: false,
+                            required: false,
+                            name: "inactiveUser",
+                            value: field.value,
+                          }}
+                          thumb={{ asChild: false }}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage className={Styles.message()} />
+                    </FormItem>
+                  </Tooltip>
                 )}
               />
             </div>
