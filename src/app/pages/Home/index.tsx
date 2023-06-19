@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { Button, SearchInput } from '@controle-devs-ui/react';
-import { deleteUser, getUsers } from '@/services/user/user-service';
-import { UserCard } from '@/app/components/UserCard';
-import { UserProps } from '@/app/models/User';
-import * as Styles from './styles';
+import React, { useState, useEffect } from "react";
+import { Button, SearchInput } from "@controle-devs-ui/react";
+import { deleteUser, getUsers } from "@/services/user/user-service";
+import { UserCard } from "@/app/components/UserCard";
+import { Spinner } from "@/app/components/Spinner";
+import { UserProps } from "@/app/models/User";
+import * as Styles from "./styles";
 
 const MAX_CARDS = 6;
 
 const HomePage = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [data, setData] = useState<UserProps[]>([]);
   const [showAll, setShowAll] = useState(false);
 
@@ -36,10 +37,10 @@ const HomePage = () => {
 
     deleteUser(id)
       .then((response) => {
-        console.log('Card excluído com sucesso!');
+        console.log("Card excluído com sucesso!");
       })
       .catch((error) => {
-        console.log('Ocorreu um erro ao excluir o card:', error);
+        console.log("Ocorreu um erro ao excluir o card:", error);
       });
   };
 
@@ -59,16 +60,21 @@ const HomePage = () => {
   const visibleData = showAll ? filteredData : filteredData.slice(0, MAX_CARDS);
 
   const getCardClassName = (index: number) => {
-    return index === 0 ? 'mt-4' : '';
+    return index === 0 ? "mt-4" : "";
   };
 
-  const loadingIndicator = data.length === 0 ? <div>Carregando...</div> : null;
+  const loadingIndicator =
+    data.length === 0 ? (
+      <div>
+        <Spinner />
+      </div>
+    ) : null;
 
   return (
     <div className={Styles.homeContainer()}>
       <div className={Styles.inputContainer()}>
         <SearchInput
-          placeholder={'Pesquisar'}
+          placeholder={"Pesquisar"}
           onChange={(value) => setSearchQuery(value)}
         />
       </div>
@@ -86,8 +92,8 @@ const HomePage = () => {
                 imagePath: user.imagePath,
                 hardSkills: user.hardSkills,
               }}
-              onClick={() => console.log('onClick')}
-              onChange={() => console.log('onChange')}
+              onClick={() => console.log("onClick")}
+              onChange={() => console.log("onChange")}
               onDelete={() => handleCardDelete(user.id)}
               className={getCardClassName(index)}
             />
@@ -95,11 +101,11 @@ const HomePage = () => {
       </div>
       {!showAll && filteredData.length > MAX_CARDS ? (
         <div className={Styles.button()}>
-          <Button text='Ver mais' onClick={handleShowAll} />
+          <Button text="Ver mais" onClick={handleShowAll} />
         </div>
       ) : showAll && filteredData.length > MAX_CARDS ? (
         <div className={Styles.button()}>
-          <Button text='Ver menos' onClick={handleShowLess} />
+          <Button text="Ver menos" onClick={handleShowLess} />
         </div>
       ) : null}
     </div>
