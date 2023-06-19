@@ -18,6 +18,8 @@ import {
   MultiSelect,
   MultiValueProps,
   Options,
+  Tooltip,
+  toast,
 } from "@controle-devs-ui/react";
 
 import "@controle-devs-ui/react/dist/index.css";
@@ -112,8 +114,17 @@ export const NewUserForm = () => {
 
       handleClearFields();
       setKey(+new Date());
+      toast.success({
+        title: "Sucesso!",
+        description: "Usuário cadastrado com sucesso",
+      });
     } catch (error) {
       console.error("Erro ao cadastrar usuário:", error);
+
+      toast.error({
+        title: "Erro!",
+        description: "Erro ao cadastrar usuário",
+      });
     }
   }
 
@@ -184,25 +195,27 @@ export const NewUserForm = () => {
               <FormField
                 name="inactiveUser"
                 render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Switch
-                        label=" O usuário está inativo? "
-                        root={{
-                          defaultChecked: field.value,
-                          checked: field.value,
-                          onCheckedChange: field.onChange,
-                          disabled: false,
-                          required: false,
-                          name: "inactiveUser",
-                          value: field.value,
-                        }}
-                        thumb={{ asChild: false }}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage className={Styles.message()} />
-                  </FormItem>
+                  <Tooltip
+                    message=" Usuários que estão de férias, licença ou que foram desligados."
+                    content={{ sideOffset: 5 }}
+                  >
+                    <FormItem>
+                      <FormControl>
+                        <Switch
+                          label=" O usuário está inativo? "
+                          root={{
+                            checked: field.value,
+                            onCheckedChange: field.onChange,
+                            name: "inactiveUser",
+                            value: field.value,
+                          }}
+                          thumb={{ asChild: false }}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage className={Styles.message()} />
+                    </FormItem>
+                  </Tooltip>
                 )}
               />
             </div>
