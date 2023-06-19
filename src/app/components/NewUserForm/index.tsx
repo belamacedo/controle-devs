@@ -114,21 +114,16 @@ export const NewUserForm = () => {
 
       handleClearFields();
       setKey(+new Date());
-      toast({
+      toast.success({
         title: "Sucesso!",
         description: "Usuário cadastrado com sucesso",
-        classNameContent: "flex flex-row gap-1 pl-2",
-        className: "p-4",
-        variant: "success",
       });
     } catch (error) {
       console.error("Erro ao cadastrar usuário:", error);
-      toast({
+
+      toast.error({
         title: "Erro!",
         description: "Erro ao cadastrar usuário",
-        classNameContent: "flex flex-row gap-1 pl-2",
-        className: "p-4",
-        variant: "error",
       });
     }
   }

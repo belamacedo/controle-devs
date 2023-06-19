@@ -19,7 +19,7 @@ export const Toaster = () => {
     <ToastProvider>
       {toasts.map(function ({ id, title, description, action, ...props }) {
         return (
-          <Toast key={id} {...props}>
+          <Toast className={Styles.container()} key={id} {...props}>
             <div className={Styles.content()}>
               {title && <ToastTitle>{title}</ToastTitle>}
               {description && (
