@@ -5,9 +5,9 @@ export interface UserProps {
   jobPosition: string;
   hardSkills: string[];
   squad?: {
-    squadName: string ,
-    squadLeaderName: string,
-    squadMembers: string[],
-  },
+    squadName: string;
+    squadLeaderName: string;
+    squadMembers: string[];
+  };
   bio?: string;
 }
