@@ -22,7 +22,7 @@ export const UserCard = ({
   moreDetails,
   className,
 }: CardProps) => {
-  const skillsContainerHeight = user.hardSkills.length > 6 ? '28' : 'auto';
+  const skillsContainerHeight = user.hardSkills.length > 6 ? 'h-28' : 'auto';
 
   return (
     <div className={`${Styles.container()} ${className}`}>
@@ -50,9 +50,7 @@ export const UserCard = ({
         <div className={Styles.title()}>{user.fullName}</div>
         <div className={Styles.subtitle()}>{user.jobPosition}</div>
 
-        <div
-          className={`${Styles.skillsContainer()} h-${skillsContainerHeight}`}
-        >
+        <div className={`${Styles.skillsContainer()} ${skillsContainerHeight}`}>
           <div className={Styles.skillsContent()}>
             {user.hardSkills?.map((skill) => (
               <span key={skill} className={Styles.skills()}>
