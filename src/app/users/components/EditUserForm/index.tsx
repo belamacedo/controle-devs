@@ -77,24 +77,34 @@ export const EditUserForm = ({ user }: Props) => {
     imagePath: z.custom<File | string | null | undefined>(),
   });
 
-  const defaultSkills = user
-    ? user.hardSkills.map((skill) => ({ value: skill, label: skill }))
-    : [];
+  const updatedUser: z.infer<typeof formSchema> = {
+    id: user.id,
+    fullName: user.fullName,
+    email: user.email,
+    squad: user.squad.squadName,
+    description: user.description,
+    hardSkills: user.hardSkills,
+    imagePath: user.imagePath,
+    biography: user.biography,
+    inactiveUser: user.inactiveUser,
+  };
 
-  console.log(defaultSkills);
+  console.log(updatedUser);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: user || {
-      imagePath: null,
-      inactiveUser: false,
-      biography: "",
-      fullName: "",
-      email: "",
-      description: "",
-      hardSkills: [],
-      squad: "",
-    },
+    defaultValues: user
+      ? updatedUser
+      : {
+          imagePath: null,
+          inactiveUser: false,
+          biography: "",
+          fullName: "",
+          email: "",
+          description: "",
+          hardSkills: [],
+          squad: "",
+        },
   });
 
   const handleImageChange = (file: File) => {
@@ -359,7 +369,6 @@ export const EditUserForm = ({ user }: Props) => {
                           closeMenuOnSelect: false,
                           hideSelectedOptions: false,
                           isSearchable: true,
-                          value: defaultSkills,
                         }}
                         onChange={onChangeHardSkills}
                       />
