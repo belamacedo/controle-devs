@@ -4,4 +4,10 @@ export interface UserProps {
   fullName: string;
   jobPosition: string;
   hardSkills: string[];
+  squad?: {
+    squadName: string ,
+    squadLeaderName: string,
+    squadMembers: string[],
+  },
+  bio?: string;
 }

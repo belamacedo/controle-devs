@@ -1,17 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { Button, SearchInput } from "@controle-devs-ui/react";
-import { deleteUser, getUsers } from "@/services/user/user-service";
-import { UserCard } from "@/app/components/UserCard";
-import { Spinner } from "@/app/components/Spinner";
-import { UserProps } from "@/app/models/User";
-import * as Styles from "./styles";
+import React, { useState, useEffect } from 'react';
+import { Button, Modal, SearchInput } from '@controle-devs-ui/react';
+import { deleteUser, getUsers } from '@/services/user/user-service';
+
+import { UserProps } from '@/app/models/User';
+
+import { UserCard } from '@/app/components/UserCard';
+import { Spinner } from '@/app/components/Spinner';
+
+import { UserDetails } from './UserDetails';
+import * as Styles from './styles';
 
 const MAX_CARDS = 6;
 
 const HomePage = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [data, setData] = useState<UserProps[]>([]);
   const [showAll, setShowAll] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedUser, setSelectedUser] = useState<UserProps>();
 
   useEffect(() => {
     getUsers()
@@ -22,6 +28,15 @@ const HomePage = () => {
         console.log(error);
       });
   }, []);
+
+  const handleModalOpen = (user: UserProps) => {
+    setIsModalOpen(true);
+    setSelectedUser(user);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
 
   const handleShowAll = () => {
     setShowAll(true);
@@ -37,10 +52,10 @@ const HomePage = () => {
 
     deleteUser(id)
       .then((response) => {
-        console.log("Card excluído com sucesso!");
+        console.log('Card excluído com sucesso!');
       })
       .catch((error) => {
-        console.log("Ocorreu um erro ao excluir o card:", error);
+        console.log('Ocorreu um erro ao excluir o card:', error);
       });
   };
 
@@ -60,7 +75,7 @@ const HomePage = () => {
   const visibleData = showAll ? filteredData : filteredData.slice(0, MAX_CARDS);
 
   const getCardClassName = (index: number) => {
-    return index === 0 ? "mt-4" : "";
+    return index === 0 ? 'mt-4' : '';
   };
 
   const loadingIndicator =
@@ -71,44 +86,49 @@ const HomePage = () => {
     ) : null;
 
   return (
-    <div className={Styles.homeContainer()}>
-      <div className={Styles.inputContainer()}>
-        <SearchInput
-          placeholder={"Pesquisar"}
-          onChange={(value) => setSearchQuery(value)}
-        />
-      </div>
-      <div className={Styles.cardContainer()}>
-        {loadingIndicator}
-        {filteredData &&
-          visibleData.map((user, index) => (
-            <UserCard
-              moreDetails={true}
-              key={user.id}
-              user={{
-                id: user.id,
-                fullName: user.fullName,
-                jobPosition: user.jobPosition,
-                imagePath: user.imagePath,
-                hardSkills: user.hardSkills,
-              }}
-              onClick={() => console.log("onClick")}
-              onChange={() => console.log("onChange")}
-              onDelete={() => handleCardDelete(user.id)}
-              className={getCardClassName(index)}
-            />
-          ))}
-      </div>
-      {!showAll && filteredData.length > MAX_CARDS ? (
-        <div className={Styles.button()}>
-          <Button text="Ver mais" onClick={handleShowAll} />
+    <>
+      <div className={Styles.homeContainer()}>
+        <div className={Styles.inputContainer()}>
+          <SearchInput
+            placeholder={'Pesquisar'}
+            onChange={(value) => setSearchQuery(value)}
+          />
         </div>
-      ) : showAll && filteredData.length > MAX_CARDS ? (
-        <div className={Styles.button()}>
-          <Button text="Ver menos" onClick={handleShowLess} />
+        <div className={Styles.cardContainer()}>
+          {loadingIndicator}
+          {filteredData &&
+            visibleData.map((user, index) => (
+              <UserCard
+                moreDetails={true}
+                key={user.id}
+                user={{
+                  id: user.id,
+                  fullName: user.fullName,
+                  jobPosition: user.jobPosition,
+                  imagePath: user.imagePath,
+                  hardSkills: user.hardSkills,
+                }}
+                onClick={() => handleModalOpen(user)}
+                onChange={() => console.log('onChange')}
+                onDelete={() => handleCardDelete(user.id)}
+                className={getCardClassName(index)}
+              />
+            ))}
         </div>
-      ) : null}
-    </div>
+        {!showAll && filteredData.length > MAX_CARDS ? (
+          <div className={Styles.button()}>
+            <Button text='Ver mais' onClick={handleShowAll} />
+          </div>
+        ) : showAll && filteredData.length > MAX_CARDS ? (
+          <div className={Styles.button()}>
+            <Button text='Ver menos' onClick={handleShowLess} />
+          </div>
+        ) : null}
+      </div>
+      <Modal buttonText='Voltar' open={isModalOpen} onClose={handleModalClose}>
+        {selectedUser && <UserDetails userDetails={selectedUser} />}
+      </Modal>
+    </>
   );
 };
 

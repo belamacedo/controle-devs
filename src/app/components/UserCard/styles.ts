@@ -33,7 +33,9 @@ export const children = cva(
 
 export const content = cva('absolute bottom-0 left-0 right-0 p-6s ');
 
-export const skillsContainer = cva('p-6 overflow-y-auto scrollbar-thin rounded p-1')
+export const skillsContainer = cva(
+  'p-1 overflow-y-auto scrollbar-thin rounded h-[100px]'
+);
 
 export const skillsContent = cva(
   'flex flex-wrap justify-center px-6 pt-4 pb-2'
