@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import {
@@ -29,16 +30,27 @@ import { getSquadInfoQuery } from "@/services/squadInfo/squadInfo-service";
 
 import * as Styles from "./styles";
 import { getSkillsQuery } from "@/services/skills/skills-service";
-import { addNewUserMutation } from "@/services/user/user-service";
+import {
+  addNewUserMutation,
+  updateUserMutation,
+} from "@/services/user/user-service";
 import { SquadInfo } from "@/services/squadInfo/squadInfo";
+import { User } from "@/services/user/user";
 
-export const NewUserForm = () => {
+interface Props {
+  user: User;
+}
+
+export const EditUserForm = ({ user }: Props) => {
+  const router = useRouter();
+
   const [squads, setSquads] = useState<Options[]>([]);
   const [skills, setSkills] = useState<Options[]>([]);
   const [squadInfo, setSquadInfo] = useState<SquadInfo[]>([]);
   const [key, setKey] = useState<number>(+new Date());
-
+  console.log(user);
   const formSchema = z.object({
+    id: z.number(),
     fullName: z
       .string()
       .min(2, {
@@ -62,12 +74,18 @@ export const NewUserForm = () => {
     squad: z.string().nonempty("Selecione a squad"),
     biography: z.optional(z.string()),
     inactiveUser: z.optional(z.boolean()),
-    imagePath: z.custom<File | null>(),
+    imagePath: z.custom<File | string | null | undefined>(),
   });
+
+  const defaultSkills = user
+    ? user.hardSkills.map((skill) => ({ value: skill, label: skill }))
+    : [];
+
+  console.log(defaultSkills);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
+    defaultValues: user || {
       imagePath: null,
       inactiveUser: false,
       biography: "",
@@ -107,24 +125,38 @@ export const NewUserForm = () => {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      await addNewUserMutation({
-        ...values,
-        imagePath: values.imagePath !== null ? generateRandomImage() : null,
-        squad: handleSquad(values.squad),
-      });
+      if (user) {
+        await updateUserMutation(user.id, {
+          ...values,
+          imagePath: values.imagePath !== null ? generateRandomImage() : null,
+          squad: handleSquad(values.squad),
+        });
+
+        router.push("/");
+      } else {
+        await addNewUserMutation({
+          ...values,
+          imagePath: values.imagePath !== null ? generateRandomImage() : null,
+          squad: handleSquad(values.squad),
+        });
+      }
 
       handleClearFields();
       setKey(+new Date());
       toast.success({
         title: "Sucesso!",
-        description: "Usuário cadastrado com sucesso",
+        description: user
+          ? "Dados do usuário alterados"
+          : "Usuário cadastrado com sucesso",
       });
     } catch (error) {
-      console.error("Erro ao cadastrar usuário:", error);
+      console.error("Erro ao salvar:", error);
 
       toast.error({
         title: "Erro!",
-        description: "Erro ao cadastrar usuário",
+        description: user
+          ? "Erro ao Alterar dados do usuário"
+          : "Erro ao cadastrar usuário",
       });
     }
   }
@@ -187,7 +219,6 @@ export const NewUserForm = () => {
                         {...field}
                         onChange={handleImageChange}
                         onRemove={handleRemoveImage}
-                        accept="image/*"
                       />
                     </FormControl>
                   </FormItem>
@@ -263,7 +294,11 @@ export const NewUserForm = () => {
                   <FormItem>
                     <FormLabel className={Styles.label()}>E-mail:</FormLabel>
                     <FormControl>
-                      <Input placeholder="E-mail" {...field} />
+                      <Input
+                        placeholder="E-mail"
+                        {...field}
+                        value={field.value}
+                      />
                     </FormControl>
                     <FormMessage className={Styles.message()} />
                   </FormItem>
@@ -297,6 +332,7 @@ export const NewUserForm = () => {
                         options={squads}
                         root={{
                           onValueChange: field.onChange,
+                          defaultValue: field.value,
                         }}
                       />
                     </FormControl>
@@ -322,6 +358,8 @@ export const NewUserForm = () => {
                           placeholder: "Selecione as opções...",
                           closeMenuOnSelect: false,
                           hideSelectedOptions: false,
+                          isSearchable: true,
+                          value: defaultSkills,
                         }}
                         onChange={onChangeHardSkills}
                       />
@@ -333,7 +371,7 @@ export const NewUserForm = () => {
 
               <Button
                 type="submit"
-                text="Cadastrar"
+                text={user ? "Alterar" : "Cadastrar"}
                 disabled={form.formState.isSubmitting}
               />
             </div>

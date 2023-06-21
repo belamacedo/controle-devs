@@ -1,26 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Modal, SearchInput } from '@controle-devs-ui/react';
-import { deleteUser, getUsers } from '@/services/user/user-service';
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { Button, Modal, SearchInput } from "@controle-devs-ui/react";
+import {
+  deleteUserMutation,
+  getUsersQuery,
+} from "@/services/user/user-service";
 
-import { UserProps } from '@/app/models/User';
+import { UserProps } from "@/app/models/User";
 
-import { UserCard } from '@/app/components/UserCard';
-import { Spinner } from '@/app/components/Spinner';
+import { UserCard } from "@/app/components/UserCard";
+import { Spinner } from "@/app/components/Spinner";
 
-import { UserDetails } from './UserDetails';
-import * as Styles from './styles';
+import { UserDetails } from "./UserDetails";
+import * as Styles from "./styles";
 
 const MAX_CARDS = 6;
 
 const HomePage = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState("");
   const [data, setData] = useState<UserProps[]>([]);
   const [showAll, setShowAll] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<UserProps>();
 
   useEffect(() => {
-    getUsers()
+    getUsersQuery()
       .then((data) => {
         setData(data);
       })
@@ -46,16 +51,20 @@ const HomePage = () => {
     setShowAll(false);
   };
 
+  const handleUpdateUser = (id: number) => {
+    router.push(`/users/edit/${id}`);
+  };
+
   const handleCardDelete = (id: number) => {
     const updatedData = data.filter((item) => item.id !== id);
     setData(updatedData);
 
-    deleteUser(id)
+    deleteUserMutation(id)
       .then((response) => {
-        console.log('Card excluído com sucesso!');
+        console.log("Card excluído com sucesso!");
       })
       .catch((error) => {
-        console.log('Ocorreu um erro ao excluir o card:', error);
+        console.log("Ocorreu um erro ao excluir o card:", error);
       });
   };
 
@@ -75,7 +84,7 @@ const HomePage = () => {
   const visibleData = showAll ? filteredData : filteredData.slice(0, MAX_CARDS);
 
   const getCardClassName = (index: number) => {
-    return index === 0 ? 'mt-4' : '';
+    return index === 0 ? "mt-4" : "";
   };
 
   const loadingIndicator =
@@ -90,7 +99,7 @@ const HomePage = () => {
       <div className={Styles.homeContainer()}>
         <div className={Styles.inputContainer()}>
           <SearchInput
-            placeholder={'Pesquisar'}
+            placeholder={"Pesquisar"}
             onChange={(value) => setSearchQuery(value)}
           />
         </div>
@@ -109,7 +118,7 @@ const HomePage = () => {
                   hardSkills: user.hardSkills,
                 }}
                 onClick={() => handleModalOpen(user)}
-                onChange={() => console.log('onChange')}
+                onChange={() => handleUpdateUser(user.id)}
                 onDelete={() => handleCardDelete(user.id)}
                 className={getCardClassName(index)}
               />
@@ -117,15 +126,15 @@ const HomePage = () => {
         </div>
         {!showAll && filteredData.length > MAX_CARDS ? (
           <div className={Styles.button()}>
-            <Button text='Ver mais' onClick={handleShowAll} />
+            <Button text="Ver mais" onClick={handleShowAll} />
           </div>
         ) : showAll && filteredData.length > MAX_CARDS ? (
           <div className={Styles.button()}>
-            <Button text='Ver menos' onClick={handleShowLess} />
+            <Button text="Ver menos" onClick={handleShowLess} />
           </div>
         ) : null}
       </div>
-      <Modal buttonText='Voltar' open={isModalOpen} onClose={handleModalClose}>
+      <Modal buttonText="Voltar" open={isModalOpen} onClose={handleModalClose}>
         {selectedUser && <UserDetails userDetails={selectedUser} />}
       </Modal>
     </>
