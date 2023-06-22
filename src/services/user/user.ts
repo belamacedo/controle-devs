@@ -1,13 +1,13 @@
 import { SquadInfo } from "../squadInfo/squadInfo";
 
 export interface User {
-  id: number;
   fullName: string;
   email: string;
-  description: string;
+  jobPosition: string;
   hardSkills: string[];
-  squad: SquadInfo;
-  biography?: string;
+  squadName: string;
+  squad?: string;
+  bio?: string;
   inactiveUser?: boolean;
-  imagePath?: string | File | null;
+  imagePath?: File | null;
 }

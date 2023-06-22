@@ -137,6 +137,7 @@
       "imagePath": "https://randomuser.me/api/portraits/men/1.jpg",
       "fullName": "Lucas Oliveira",
       "jobPosition": "Desenvolvedor",
+      "squadName": "Frontend",
       "squad": {
         "squadName": "Frontend",
         "squadLeaderName": "Ana Silva",
@@ -164,6 +165,7 @@
       "imagePath": "https://randomuser.me/api/portraits/women/2.jpg",
       "fullName": "Ana Costa",
       "jobPosition": "Desenvolvedora",
+      "squadName": "Backend",
       "squad": {
         "squadName": "Backend",
         "squadLeaderName": "Lucas Santos",
@@ -188,6 +190,7 @@
       "imagePath": "https://randomuser.me/api/portraits/men/3.jpg",
       "fullName": "Gustavo Silva",
       "jobPosition": "Desenvolvedor",
+      "squadName": "Mobile",
       "squad": {
         "squadName": "Mobile",
         "squadLeaderName": "Julia Costa",
@@ -209,6 +212,7 @@
       "imagePath": "https://randomuser.me/api/portraits/women/4.jpg",
       "fullName": "Julia Santos",
       "jobPosition": "Desenvolvedora",
+      "squadName": "Data Science",
       "squad": {
         "squadName": "Data Science",
         "squadLeaderName": "Gustavo Oliveira",
@@ -230,6 +234,7 @@
       "imagePath": "https://randomuser.me/api/portraits/men/5.jpg",
       "fullName": "Pedro Costa",
       "jobPosition": "Desenvolvedor",
+      "squadName": "DevOps",
       "squad": {
         "squadName": "DevOps",
         "squadLeaderName": "Gustavo Santos",
@@ -251,6 +256,7 @@
       "imagePath": "https://randomuser.me/api/portraits/women/6.jpg",
       "fullName": "Mariana Oliveira",
       "jobPosition": "Desenvolvedora",
+      "squadName": "Frontend",
       "squad": {
         "squadName": "Frontend",
         "squadLeaderName": "Lucas Oliveira",
@@ -273,6 +279,7 @@
       "imagePath": "https://randomuser.me/api/portraits/women/7.jpg",
       "fullName": "Carolina Oliveira",
       "jobPosition": "Desenvolvedora",
+      "squadName": "Backend",
       "squad": {
         "squadName": "Backend",
         "squadLeaderName": "Felipe Almeida",
@@ -293,6 +300,7 @@
       "imagePath": "https://randomuser.me/api/portraits/women/8.jpg",
       "fullName": "Mia Young",
       "jobPosition": "Desenvolvedora",
+      "squadName": "Developers",
       "squad": {
         "squadName": "Developers",
         "squadLeaderName": "Jane Smith",
@@ -315,6 +323,7 @@
       "imagePath": "https://randomuser.me/api/portraits/men/10.jpg",
       "fullName": "Eric Hernandez",
       "jobPosition": "Desenvolvedora",
+      "squadName": "Designers",
       "squad": {
         "squadName": "Designers",
         "squadLeaderName": "John Doe",
@@ -338,6 +347,7 @@
       "imagePath": "https://randomuser.me/api/portraits/women/14.jpg",
       "fullName": "Emily Davis",
       "jobPosition": "Desenvolvedora",
+      "squadName": "Developers",
       "squad": {
         "squadName": "Developers",
         "squadLeaderName": "Jane Smith",
@@ -360,6 +370,7 @@
       "imagePath": "https://randomuser.me/api/portraits/men/9.jpg",
       "fullName": "Ryan Thompson",
       "jobPosition": "Desenvolvedor",
+      "squadName": "QA Engineers",
       "squad": {
         "squadName": "QA Engineers",
         "squadLeaderName": "Sarah Johnson",
@@ -382,6 +393,7 @@
       "imagePath": "https://randomuser.me/api/portraits/women/12.jpg",
       "fullName": "Olivia Wilson",
       "jobPosition": "Desenvolvedora",
+      "squadName": "Data Science",
       "squad": {
         "squadName": "Data Science",
         "squadLeaderName": "Emily Smith",
@@ -404,6 +416,7 @@
       "imagePath": "https://randomuser.me/api/portraits/men/13.jpg",
       "fullName": "Daniel Rodriguez",
       "jobPosition": "Desenvolvedor",
+      "squadName": "Developers",
       "squad": {
         "squadName": "Developers",
         "squadLeaderName": "Jane Smith",
@@ -430,6 +443,7 @@
         "C#",
         "Mobile"
       ],
+      "squadName": "Frontend",
       "squad": [
         {
           "id": "1",

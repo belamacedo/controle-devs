@@ -1,5 +1,5 @@
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
-import { NewUserForm } from "@/app/components/NewUserForm";
+import { UserForm } from "@/app/components/UserForm";
 import Link from "next/link";
 
 import * as Styles from "./styles";
@@ -12,7 +12,7 @@ export default function NewUser() {
         Voltar
       </Link>
       <h1 className={Styles.title()}>Cadastrar usuário</h1>
-      <NewUserForm />
+      <UserForm />
     </div>
   );
 }
