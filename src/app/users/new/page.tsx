@@ -1,18 +1,15 @@
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
-import { UserForm } from "@/app/components/UserForm";
+import { UserForm } from "@/app/components/users/UserForm";
+import Layout from "@/app/components/users/Layout";
 import Link from "next/link";
 
 import * as Styles from "./styles";
 
 export default function NewUser() {
   return (
-    <div className={Styles.container()}>
-      <Link href="/" className={Styles.backContent()}>
-        <ArrowLeftIcon className={Styles.arrowIcon()} />
-        Voltar
-      </Link>
+    <Layout>
       <h1 className={Styles.title()}>Cadastrar usuário</h1>
       <UserForm />
-    </div>
+    </Layout>
   );
 }

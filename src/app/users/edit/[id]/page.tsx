@@ -3,11 +3,13 @@ import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { toast } from "@controle-devs-ui/react";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
-import { UserForm } from "@/app/components/UserForm";
+import { UserForm } from "@/app/components/users/UserForm";
+import Layout from "@/app/components/users/Layout";
 import { Spinner } from "@/app/components/Spinner";
 import { getUserIdQuery } from "@/services/user/user-service";
 import { User } from "@/services/user/user";
 import * as Styles from "./styles";
+
 interface Props {
   params: {
     id: number;
@@ -34,13 +36,9 @@ export default function EditUser({ params }: Props) {
     getUser();
   }, [getUser]);
   return (
-    <div className={Styles.container()}>
-      <Link href="/" className={Styles.backContent()}>
-        <ArrowLeftIcon className={Styles.arrowIcon()} />
-        Voltar
-      </Link>
+    <Layout>
       <h1 className={Styles.title()}>Alterar dados do usuário</h1>
       {user ? <UserForm user={user} id={params.id} /> : <Spinner />}
-    </div>
+    </Layout>
   );
 }
