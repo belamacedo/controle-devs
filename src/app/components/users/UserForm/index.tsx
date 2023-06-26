@@ -100,6 +100,7 @@ export const UserForm = ({ user, id }: Props) => {
   const handleRemoveImage = () => {
     form.setValue("imagePath", null);
   };
+
   const onChangeHardSkills = (
     newValue: MultiValue<Options> | SingleValue<Options>,
     actionMeta: ActionMeta<Options>
@@ -107,7 +108,9 @@ export const UserForm = ({ user, id }: Props) => {
     if (Array.isArray(newValue)) {
       const options = newValue.map((option) => option?.label);
       form.setValue("hardSkills", options);
+      console.log("uniqueOptions", options);
     }
+    console.log("newValue", newValue);
   };
 
   const handleClearFields = () => {
@@ -350,7 +353,7 @@ export const UserForm = ({ user, id }: Props) => {
                         closeMenuOnSelect={false}
                         hideSelectedOptions={false}
                         onChange={onChangeHardSkills}
-                        value={field.value.map((value) => ({
+                        value={field.value.map((value: string) => ({
                           value,
                           label: value,
                         }))}
