@@ -1,9 +1,6 @@
-import { ArrowLeftIcon } from "@radix-ui/react-icons";
-import { UserForm } from "@/app/components/users/UserForm";
-import Layout from "@/app/components/users/Layout";
-import Link from "next/link";
-
+import Layout from "@/components/users/Layout";
 import * as Styles from "./styles";
+import { UserForm } from "@/components/users/UserForm";
 
 export default function NewUser() {
   return (

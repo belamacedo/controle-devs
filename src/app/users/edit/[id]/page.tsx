@@ -1,11 +1,9 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
-import Link from "next/link";
 import { toast } from "@controle-devs-ui/react";
-import { ArrowLeftIcon } from "@radix-ui/react-icons";
-import { UserForm } from "@/app/components/users/UserForm";
-import Layout from "@/app/components/users/Layout";
-import { Spinner } from "@/app/components/Spinner";
+import Layout from "@/components/users/Layout";
+import { UserForm } from "@/components/users/UserForm";
+import { Spinner } from "@/components/Spinner";
 import { getUserIdQuery } from "@/services/user/user-service";
 import { User } from "@/services/user/user";
 import * as Styles from "./styles";

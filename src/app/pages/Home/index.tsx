@@ -5,12 +5,9 @@ import {
   deleteUserMutation,
   getUsersQuery,
 } from "@/services/user/user-service";
-
-import { UserProps } from "@/app/models/User";
-
-import { UserCard } from "@/app/components/UserCard";
-import { Spinner } from "@/app/components/Spinner";
-
+import { UserProps } from "@/models/User";
+import { Spinner } from "@/components/Spinner";
+import { UserCard } from "@/components/UserCard";
 import { UserDetails } from "./UserDetails";
 import * as Styles from "./styles";
 

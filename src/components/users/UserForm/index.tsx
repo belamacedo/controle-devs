@@ -19,9 +19,6 @@ import {
   Options,
   Tooltip,
   toast,
-  MultiValue,
-  SingleValue,
-  ActionMeta,
   MultiSelect,
 } from "@controle-devs-ui/react";
 
@@ -69,9 +66,11 @@ export const UserForm = ({ user, id }: Props) => {
         message: "A descrição deve ter pelo menos 2 caracteres..",
       })
       .nonempty("O nome é obrigatório"),
-    hardSkills: z.array(z.object({ label: z.string(), value: z.string()})).refine((skills) => skills.length > 0, {
-      message: "Selecione pelo menos uma habilidade",
-    }),
+    hardSkills: z
+      .array(z.object({ label: z.string(), value: z.string() }))
+      .refine((skills) => skills.length > 0, {
+        message: "Selecione pelo menos uma habilidade",
+      }),
     squadName: z.string().nonempty("Selecione a squad"),
     bio: z.optional(z.string()),
     inactiveUser: z.optional(z.boolean()),
@@ -101,10 +100,8 @@ export const UserForm = ({ user, id }: Props) => {
     form.setValue("imagePath", null);
   };
 
-  const onChangeHardSkills = (
-    newValue: { value: string, label: string}[],
-  ) => {
-    form.setValue("hardSkills", newValue, { shouldValidate: true});
+  const onChangeHardSkills = (newValue: { value: string; label: string }[]) => {
+    form.setValue("hardSkills", newValue, { shouldValidate: true });
   };
 
   const handleClearFields = () => {
@@ -346,7 +343,11 @@ export const UserForm = ({ user, id }: Props) => {
                         placeholder="Selecione as opções..."
                         closeMenuOnSelect={false}
                         hideSelectedOptions={false}
-                        onChange={value => onChangeHardSkills(value as { label: string, value: string}[])}
+                        onChange={(value) =>
+                          onChangeHardSkills(
+                            value as { label: string; value: string }[]
+                          )
+                        }
                         value={field.value}
                       />
                     </FormControl>
