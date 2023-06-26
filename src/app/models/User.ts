@@ -3,7 +3,7 @@ export interface UserProps {
   imagePath: string;
   fullName: string;
   jobPosition: string;
-  hardSkills: string[];
+  hardSkills: { value: string; label: string; }[];
   squad?: {
     squadName: string;
     squadLeaderName: string;

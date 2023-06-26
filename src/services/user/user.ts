@@ -4,7 +4,7 @@ export interface User {
   fullName: string;
   email: string;
   jobPosition: string;
-  hardSkills: string[];
+  hardSkills: { value: string; label: string; }[];
   squadName: string;
   squad?: string;
   bio?: string;

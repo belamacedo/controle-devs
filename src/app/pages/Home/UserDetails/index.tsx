@@ -56,9 +56,9 @@ export const UserDetails = ({ userDetails }: Props) => {
         <div className={Styles.hardSkillsContainer()}>
           <h4 className={Styles.hardSkillsText()}>Hard Skills</h4>
           <div className={Styles.hardSkills()}>
-            {userDetails.hardSkills.map((skill, index) => (
-              <div key={index} className={Styles.hardSkillsItems()}>
-                {skill}
+            {userDetails.hardSkills.map((skill) => (
+              <div key={skill.value} className={Styles.hardSkillsItems()}>
+                {skill.label}
               </div>
             ))}
           </div>

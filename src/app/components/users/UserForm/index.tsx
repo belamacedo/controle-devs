@@ -69,7 +69,7 @@ export const UserForm = ({ user, id }: Props) => {
         message: "A descrição deve ter pelo menos 2 caracteres..",
       })
       .nonempty("O nome é obrigatório"),
-    hardSkills: z.array(z.string()).refine((skills) => skills.length > 0, {
+    hardSkills: z.array(z.object({ label: z.string(), value: z.string()})).refine((skills) => skills.length > 0, {
       message: "Selecione pelo menos uma habilidade",
     }),
     squadName: z.string().nonempty("Selecione a squad"),
@@ -102,15 +102,9 @@ export const UserForm = ({ user, id }: Props) => {
   };
 
   const onChangeHardSkills = (
-    newValue: MultiValue<Options> | SingleValue<Options>,
-    actionMeta: ActionMeta<Options>
+    newValue: { value: string, label: string}[],
   ) => {
-    if (Array.isArray(newValue)) {
-      const options = newValue.map((option) => option?.label);
-      form.setValue("hardSkills", options);
-      console.log("uniqueOptions", options);
-    }
-    console.log("newValue", newValue);
+    form.setValue("hardSkills", newValue, { shouldValidate: true});
   };
 
   const handleClearFields = () => {
@@ -352,11 +346,8 @@ export const UserForm = ({ user, id }: Props) => {
                         placeholder="Selecione as opções..."
                         closeMenuOnSelect={false}
                         hideSelectedOptions={false}
-                        onChange={onChangeHardSkills}
-                        value={field.value.map((value: string) => ({
-                          value,
-                          label: value,
-                        }))}
+                        onChange={value => onChangeHardSkills(value as { label: string, value: string}[])}
+                        value={field.value}
                       />
                     </FormControl>
                     <FormMessage className={Styles.message()} />

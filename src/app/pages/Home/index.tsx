@@ -75,7 +75,7 @@ const HomePage = () => {
         .toLowerCase()
         .includes(searchQuery.toLowerCase());
       const hardSkillsMatch = item.hardSkills.some((skill) =>
-        skill.toLowerCase().includes(searchQuery.toLowerCase())
+        skill.value?.toLowerCase().includes(searchQuery.toLowerCase())
       );
 
       return fullNameMatch || hardSkillsMatch;

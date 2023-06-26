@@ -436,26 +436,26 @@
     {
       "fullName": "Tyrion Lannister Macedo",
       "email": "emaildodoguinho@gmail.com",
-      "description": "teste",
+      "jobPosition": "Teste",
       "hardSkills": [
-        "React Js",
-        "Angular",
-        "C#",
-        "Mobile"
-      ],
-      "squadName": "Frontend",
-      "squad": [
         {
-          "id": "1",
-          "squadName": "Frontend",
-          "squadLeaderName": "Ana Silva",
-          "squadMembers": [
-            "Julia Costa",
-            "Gustavo Santos"
-          ]
+          "label": "React Js",
+          "value": "1"
+        },
+        {
+          "label": "React Native",
+          "value": "2"
+        },
+        {
+          "label": "Angular",
+          "value": "3"
+        },
+        {
+          "label": "C#",
+          "value": "4"
         }
       ],
-      "biography": "Meu nome é Tyrion, sou um pug e tenho 6 aninhos. hihihi",
+      "squadName": "Frontend",
       "inactiveUser": false,
       "imagePath": "https://randomuser.me/api/portraits/women/33.jpg",
       "id": 14
