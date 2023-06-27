@@ -16,18 +16,13 @@ import {
   Select,
   Switch,
   useForm,
-  Options,
   Tooltip,
   toast,
   MultiSelect,
 } from "@controle-devs-ui/react";
 
-import "@controle-devs-ui/react/dist/index.css";
-
 import { getSquadQuery } from "@/services/squad/squad-service";
 import { getSquadInfoQuery } from "@/services/squadInfo/squadInfo-service";
-
-import * as Styles from "./styles";
 import { getSkillsQuery } from "@/services/skills/skills-service";
 import {
   addNewUserMutation,
@@ -35,6 +30,11 @@ import {
 } from "@/services/user/user-service";
 import { SquadInfo } from "@/services/squadInfo/squadInfo";
 import { User } from "@/services/user/user";
+import { Option } from "@/models/Option";
+
+import "@controle-devs-ui/react/dist/index.css";
+
+import * as Styles from "./styles";
 
 interface Props {
   id?: number;
@@ -43,8 +43,8 @@ interface Props {
 
 export const UserForm = ({ user, id }: Props) => {
   const router = useRouter();
-  const [squads, setSquads] = useState<Options[]>([]);
-  const [skills, setSkills] = useState<Options[]>([]);
+  const [squads, setSquads] = useState<Option[]>([]);
+  const [skills, setSkills] = useState<Option[]>([]);
   const [squadInfo, setSquadInfo] = useState<SquadInfo[]>([]);
   const [key, setKey] = useState<number>(+new Date());
 
@@ -77,7 +77,6 @@ export const UserForm = ({ user, id }: Props) => {
     imagePath: z.custom<File | null>(),
   });
 
-  console.log(user);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: user || {
@@ -100,7 +99,7 @@ export const UserForm = ({ user, id }: Props) => {
     form.setValue("imagePath", null);
   };
 
-  const onChangeHardSkills = (newValue: { value: string; label: string }[]) => {
+  const onChangeHardSkills = (newValue: Option[]) => {
     form.setValue("hardSkills", newValue, { shouldValidate: true });
   };
 
@@ -344,9 +343,7 @@ export const UserForm = ({ user, id }: Props) => {
                         closeMenuOnSelect={false}
                         hideSelectedOptions={false}
                         onChange={(value) =>
-                          onChangeHardSkills(
-                            value as { label: string; value: string }[]
-                          )
+                          onChangeHardSkills(value as Option[])
                         }
                         value={field.value}
                       />

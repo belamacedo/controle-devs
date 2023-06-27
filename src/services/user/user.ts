@@ -1,10 +1,10 @@
-import { SquadInfo } from "../squadInfo/squadInfo";
+import { Option } from "@/models/Option";
 
 export interface User {
   fullName: string;
   email: string;
   jobPosition: string;
-  hardSkills: { value: string; label: string; }[];
+  hardSkills: Option[];
   squadName: string;
   squad?: string;
   bio?: string;
