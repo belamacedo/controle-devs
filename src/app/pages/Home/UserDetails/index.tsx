@@ -1,6 +1,6 @@
-import React from 'react';
-import { UserProps } from '@/app/models/User';
-import * as Styles from './styles';
+import React from "react";
+import { UserProps } from "@/models/User";
+import * as Styles from "./styles";
 
 interface Props {
   userDetails: UserProps;
@@ -33,11 +33,11 @@ export const UserDetails = ({ userDetails }: Props) => {
             <h4 className={Styles.squad()}>Squad</h4>
             <div className={Styles.squadSpecsContent()}>
               <p className={Styles.name()}>
-                <span className={Styles.textSpan()}>Nome:</span>{' '}
+                <span className={Styles.textSpan()}>Nome:</span>{" "}
                 {userDetails.squad?.squadName}
               </p>
               <p className={Styles.leader()}>
-                <span className={Styles.textSpan()}>Líder:</span>{' '}
+                <span className={Styles.textSpan()}>Líder:</span>{" "}
                 {userDetails.squad?.squadLeaderName}
               </p>
             </div>
@@ -56,9 +56,9 @@ export const UserDetails = ({ userDetails }: Props) => {
         <div className={Styles.hardSkillsContainer()}>
           <h4 className={Styles.hardSkillsText()}>Hard Skills</h4>
           <div className={Styles.hardSkills()}>
-            {userDetails.hardSkills.map((skill, index) => (
-              <div key={index} className={Styles.hardSkillsItems()}>
-                {skill}
+            {userDetails.hardSkills.map((skill) => (
+              <div key={skill.value} className={Styles.hardSkillsItems()}>
+                {skill.label}
               </div>
             ))}
           </div>

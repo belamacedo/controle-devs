@@ -53,6 +53,98 @@
     {
       "value": "5",
       "label": "Mobile"
+    },
+    {
+      "value": "6",
+      "label": "Javascript"
+    },
+    {
+      "value": "7",
+      "label": "CSS3"
+    },
+    {
+      "value": "8",
+      "label": "GIT"
+    },
+    {
+      "value": "9",
+      "label": "Python"
+    },
+    {
+      "value": "10",
+      "label": "R"
+    },
+    {
+      "value": "11",
+      "label": "SQL"
+    },
+    {
+      "value": "11",
+      "label": "Power BI"
+    },
+    {
+      "value": "12",
+      "label": "Selenium"
+    },
+    {
+      "value": "13",
+      "label": "Jest"
+    },
+    {
+      "value": "14",
+      "label": "Node"
+    },
+    {
+      "value": "15",
+      "label": "Figma"
+    },
+    {
+      "value": "16",
+      "label": "Sketch"
+    },
+    {
+      "value": "17",
+      "label": "Illustrator"
+    },
+    {
+      "value": "17",
+      "label": "Photoshop"
+    },
+    {
+      "value": "18",
+      "label": "Vue"
+    },
+    {
+      "value": "19",
+      "label": "Typescript"
+    },
+    {
+      "value": "20",
+      "label": "NextJs"
+    },
+    {
+      "value": "21",
+      "label": "Nest JS"
+    },
+    {
+      "value": "22",
+      "label": "Java"
+    },
+    {
+      "value": "23",
+      "label": " PostgreSQL"
+    },
+    {
+      "value": "24",
+      "label": "Flutter"
+    },
+    {
+      "value": "25",
+      "label": "AWS"
+    },
+    {
+      "value": "26",
+      "label": "Docker"
     }
   ],
   "squadInfo": [
@@ -60,75 +152,49 @@
       "id": "1",
       "squadName": "Frontend",
       "squadLeaderName": "Ana Silva",
-      "squadMembers": [
-        "Julia Costa",
-        "Gustavo Santos"
-      ]
+      "squadMembers": ["Julia Costa", "Gustavo Santos"]
     },
     {
       "id": "2",
       "squadName": "Backend",
       "squadLeaderName": "Lucas Santos",
-      "squadMembers": [
-        "Mariana Oliveira",
-        "Pedro Lima",
-        "Gustavo Silva"
-      ]
+      "squadMembers": ["Mariana Oliveira", "Pedro Lima", "Gustavo Silva"]
     },
     {
       "id": "3",
       "squadName": "Mobile",
       "squadLeaderName": "Julia Costa",
-      "squadMembers": [
-        "Ana Costa",
-        "Lucas Oliveira"
-      ]
+      "squadMembers": ["Ana Costa", "Lucas Oliveira"]
     },
     {
       "id": "4",
       "squadName": "Data Science",
       "squadLeaderName": "Gustavo Oliveira",
-      "squadMembers": [
-        "Mariana Oliveira",
-        "Lucas Costa"
-      ]
+      "squadMembers": ["Mariana Oliveira", "Lucas Costa"]
     },
     {
       "id": "5",
       "squadName": "DevOps",
       "squadLeaderName": "Gustavo Santos",
-      "squadMembers": [
-        "Ana Costa",
-        "Julia Santos"
-      ]
+      "squadMembers": ["Ana Costa", "Julia Santos"]
     },
     {
       "id": "6",
       "squadName": "Developers",
       "squadLeaderName": "Jane Smith",
-      "squadMembers": [
-        "Jack Johnson",
-        "Jenny Lee"
-      ]
+      "squadMembers": ["Jack Johnson", "Jenny Lee"]
     },
     {
       "id": "7",
       "squadName": "Designers",
       "squadLeaderName": "John Doe",
-      "squadMembers": [
-        "Karen Kim",
-        "David Nguyen",
-        "Lena Lee"
-      ]
+      "squadMembers": ["Karen Kim", "David Nguyen", "Lena Lee"]
     },
     {
       "id": "8",
       "squadName": "QA Engineers",
       "squadLeaderName": "Sarah Johnson",
-      "squadMembers": [
-        "David Kim",
-        "Lena Lee"
-      ]
+      "squadMembers": ["David Kim", "Lena Lee"]
     }
   ],
   "users": [
@@ -137,25 +203,50 @@
       "imagePath": "https://randomuser.me/api/portraits/men/1.jpg",
       "fullName": "Lucas Oliveira",
       "jobPosition": "Desenvolvedor",
+      "squadName": "Frontend",
       "squad": {
         "squadName": "Frontend",
         "squadLeaderName": "Ana Silva",
-        "squadMembers": [
-          "Julia Costa",
-          "Gustavo Santos"
-        ]
+        "squadMembers": ["Julia Costa", "Gustavo Santos"]
       },
       "hardSkills": [
-        "React JS",
-        "Angular",
-        "Vue",
-        "Javascript",
-        "CSS3",
-        "Typescript",
-        "VueJs",
-        "NextJs",
-        "GIT",
-        "NodeJs"
+        {
+          "value": "1",
+          "label": "React Js"
+        },
+        {
+          "value": "3",
+          "label": "Angular"
+        },
+        {
+          "value": "18",
+          "label": "Vue"
+        },
+        {
+          "value": "6",
+          "label": "Javascript"
+        },
+        {
+          "value": "7",
+          "label": "CSS3"
+        },
+        {
+          "value": "19",
+          "label": "Typescript"
+        },
+
+        {
+          "value": "20",
+          "label": "NextJs"
+        },
+        {
+          "value": "8",
+          "label": "GIT"
+        },
+        {
+          "value": "14",
+          "label": "Node"
+        }
       ],
       "bio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
     },
@@ -164,22 +255,37 @@
       "imagePath": "https://randomuser.me/api/portraits/women/2.jpg",
       "fullName": "Ana Costa",
       "jobPosition": "Desenvolvedora",
+      "squadName": "Backend",
       "squad": {
         "squadName": "Backend",
         "squadLeaderName": "Lucas Santos",
-        "squadMembers": [
-          "Mariana Oliveira",
-          "Pedro Lima",
-          "Gustavo Silva"
-        ]
+        "squadMembers": ["Mariana Oliveira", "Pedro Lima", "Gustavo Silva"]
       },
       "hardSkills": [
-        "Node",
-        "Nest JS",
-        "Java",
-        "C#",
-        "SQL",
-        "PostgreSQL"
+        {
+          "value": "14",
+          "label": "Node"
+        },
+        {
+          "value": "21",
+          "label": "  Nest JS"
+        },
+        {
+          "value": "22",
+          "label": "Java"
+        },
+        {
+          "value": "4",
+          "label": "C#"
+        },
+        {
+          "value": "11",
+          "label": "SQL"
+        },
+        {
+          "value": "23",
+          "label": " PostgreSQL"
+        }
       ],
       "bio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
     },
@@ -188,19 +294,29 @@
       "imagePath": "https://randomuser.me/api/portraits/men/3.jpg",
       "fullName": "Gustavo Silva",
       "jobPosition": "Desenvolvedor",
+      "squadName": "Mobile",
       "squad": {
         "squadName": "Mobile",
         "squadLeaderName": "Julia Costa",
-        "squadMembers": [
-          "Ana Costa",
-          "Lucas Oliveira"
-        ]
+        "squadMembers": ["Ana Costa", "Lucas Oliveira"]
       },
       "hardSkills": [
-        "React Native",
-        "Flutter",
-        "Javascript",
-        "AWS"
+        {
+          "value": "2",
+          "label": "React Native"
+        },
+        {
+          "value": "24",
+          "label": "Flutter"
+        },
+        {
+          "value": "6",
+          "label": "Javascript"
+        },
+        {
+          "value": "25",
+          "label": "AWS"
+        }
       ],
       "bio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
     },
@@ -209,20 +325,25 @@
       "imagePath": "https://randomuser.me/api/portraits/women/4.jpg",
       "fullName": "Julia Santos",
       "jobPosition": "Desenvolvedora",
+      "squadName": "Data Science",
       "squad": {
         "squadName": "Data Science",
         "squadLeaderName": "Gustavo Oliveira",
-        "squadMembers": [
-          "Mariana Oliveira",
-          "Lucas Costa"
-        ]
+        "squadMembers": ["Mariana Oliveira", "Lucas Costa"]
       },
-      "hardSkills": [
-        "Python",
-        "R",
-        "Power BI",
-        "SQL"
-      ],
+      "hardSkills": [  {
+        "value": "9",
+        "label": "Python"
+      },     {
+        "value": "10",
+        "label": "R"}
+      ,   {
+        "value": "11",
+        "label": "Power BI"
+      },   {
+        "value": "11",
+        "label": "SQL"
+      }],
       "bio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
     },
     {
@@ -230,19 +351,29 @@
       "imagePath": "https://randomuser.me/api/portraits/men/5.jpg",
       "fullName": "Pedro Costa",
       "jobPosition": "Desenvolvedor",
+      "squadName": "DevOps",
       "squad": {
         "squadName": "DevOps",
         "squadLeaderName": "Gustavo Santos",
-        "squadMembers": [
-          "Ana Costa",
-          "Julia Santos"
-        ]
+        "squadMembers": ["Ana Costa", "Julia Santos"]
       },
       "hardSkills": [
-        "Docker",
-        "AWS",
-        "Selenium",
-        "Jest"
+        {
+          "value": "26",
+          "label": "Docker"
+        },
+        {
+          "value": "25",
+          "label": "AWS"
+        },
+        {
+          "value": "12",
+          "label": "Selenium"
+        },
+        {
+          "value": "13",
+          "label": "Jest"
+        }
       ],
       "bio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
     },
@@ -251,20 +382,33 @@
       "imagePath": "https://randomuser.me/api/portraits/women/6.jpg",
       "fullName": "Mariana Oliveira",
       "jobPosition": "Desenvolvedora",
+      "squadName": "Frontend",
       "squad": {
         "squadName": "Frontend",
         "squadLeaderName": "Lucas Oliveira",
-        "squadMembers": [
-          "Pedro Costa",
-          "Gustavo Santos"
-        ]
+        "squadMembers": ["Pedro Costa", "Gustavo Santos"]
       },
       "hardSkills": [
-        "React JS",
-        "Angular",
-        "Vue",
-        "Javascript",
-        "CSS3"
+        {
+          "label": "React Js",
+          "value": "1"
+        },
+        {
+          "label": "Angular",
+          "value": "3"
+        },
+        {
+          "value": "18",
+          "label": "Vue"
+        },
+        {
+          "label": "Javascript",
+          "value": "6"
+        },
+        {
+          "label": "CSS3",
+          "value": "7"
+        }
       ],
       "bio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
     },
@@ -273,18 +417,25 @@
       "imagePath": "https://randomuser.me/api/portraits/women/7.jpg",
       "fullName": "Carolina Oliveira",
       "jobPosition": "Desenvolvedora",
+      "squadName": "Backend",
       "squad": {
         "squadName": "Backend",
         "squadLeaderName": "Felipe Almeida",
-        "squadMembers": [
-          "Pedro Oliveira",
-          "Marcela Lima"
-        ]
+        "squadMembers": ["Pedro Oliveira", "Marcela Lima"]
       },
       "hardSkills": [
-        "Java",
-        "Node",
-        "PostgreSQL"
+        {
+          "value": "22",
+          "label": "Java"
+        },
+        {
+          "value": "14",
+          "label": "Node"
+        },
+        {
+          "value": "23",
+          "label": " PostgreSQL"
+        }
       ],
       "bio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
     },
@@ -293,20 +444,33 @@
       "imagePath": "https://randomuser.me/api/portraits/women/8.jpg",
       "fullName": "Mia Young",
       "jobPosition": "Desenvolvedora",
+      "squadName": "Developers",
       "squad": {
         "squadName": "Developers",
         "squadLeaderName": "Jane Smith",
-        "squadMembers": [
-          "Jack Johnson",
-          "Jenny Lee"
-        ]
+        "squadMembers": ["Jack Johnson", "Jenny Lee"]
       },
       "hardSkills": [
-        "React JS",
-        "Javascript",
-        "Node",
-        "CSS3",
-        "GIT"
+        {
+          "label": "React Js",
+          "value": "1"
+        },
+        {
+          "label": "Javascript",
+          "value": "6"
+        },
+        {
+          "value": "14",
+          "label": "Node"
+        },
+        {
+          "label": "CSS3",
+          "value": "7"
+        },
+        {
+          "label": "GIT",
+          "value": "8"
+        }
       ],
       "bio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
     },
@@ -315,21 +479,33 @@
       "imagePath": "https://randomuser.me/api/portraits/men/10.jpg",
       "fullName": "Eric Hernandez",
       "jobPosition": "Desenvolvedora",
+      "squadName": "Designers",
       "squad": {
         "squadName": "Designers",
         "squadLeaderName": "John Doe",
-        "squadMembers": [
-          "Karen Kim",
-          "David Nguyen",
-          "Lena Lee"
-        ]
+        "squadMembers": ["Karen Kim", "David Nguyen", "Lena Lee"]
       },
       "hardSkills": [
-        "Figma",
-        "Sketch",
-        "Illustrator",
-        "Photoshop",
-        "CSS3"
+        {
+          "value": "15",
+          "label": "Figma"
+        },
+        {
+          "value": "16",
+          "label": "Sketch"
+        },
+        {
+          "value": "17",
+          "label": "Illustrator"
+        },
+        {
+          "value": "17",
+          "label": "Photoshop"
+        },
+        {
+          "label": "CSS3",
+          "value": "7"
+        }
       ],
       "bio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
     },
@@ -338,20 +514,33 @@
       "imagePath": "https://randomuser.me/api/portraits/women/14.jpg",
       "fullName": "Emily Davis",
       "jobPosition": "Desenvolvedora",
+      "squadName": "Developers",
       "squad": {
         "squadName": "Developers",
         "squadLeaderName": "Jane Smith",
-        "squadMembers": [
-          "Jack Johnson",
-          "Jenny Lee"
-        ]
+        "squadMembers": ["Jack Johnson", "Jenny Lee"]
       },
       "hardSkills": [
-        "React JS",
-        "Javascript",
-        "Node",
-        "CSS3",
-        "GIT"
+        {
+          "label": "React Js",
+          "value": "1"
+        },
+        {
+          "label": "Javascript",
+          "value": "6"
+        },
+        {
+          "value": "14",
+          "label": "Node"
+        },
+        {
+          "label": "CSS3",
+          "value": "7"
+        },
+        {
+          "label": "GIT",
+          "value": "8"
+        }
       ],
       "bio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
     },
@@ -360,20 +549,33 @@
       "imagePath": "https://randomuser.me/api/portraits/men/9.jpg",
       "fullName": "Ryan Thompson",
       "jobPosition": "Desenvolvedor",
+      "squadName": "QA Engineers",
       "squad": {
         "squadName": "QA Engineers",
         "squadLeaderName": "Sarah Johnson",
-        "squadMembers": [
-          "David Kim",
-          "Lena Lee"
-        ]
+        "squadMembers": ["David Kim", "Lena Lee"]
       },
       "hardSkills": [
-        "Selenium",
-        "Jest",
-        "Node",
-        "Javascript",
-        "GIT"
+        {
+          "value": "12",
+          "label": "Selenium"
+        },
+        {
+          "value": "13",
+          "label": "Jest"
+        },
+        {
+          "value": "14",
+          "label": "Node"
+        },
+        {
+          "label": "Javascript",
+          "value": "6"
+        },
+        {
+          "label": "GIT",
+          "value": "8"
+        }
       ],
       "bio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
     },
@@ -382,20 +584,29 @@
       "imagePath": "https://randomuser.me/api/portraits/women/12.jpg",
       "fullName": "Olivia Wilson",
       "jobPosition": "Desenvolvedora",
+      "squadName": "Data Science",
       "squad": {
         "squadName": "Data Science",
         "squadLeaderName": "Emily Smith",
-        "squadMembers": [
-          "John Lee",
-          "Karen Kim"
-        ]
+        "squadMembers": ["John Lee", "Karen Kim"]
       },
       "hardSkills": [
-        "Python",
-        "R",
-        "SQL",
-        "Power BI",
-        "Tableau"
+        {
+          "value": "9",
+          "label": "Python"
+        },
+        {
+          "value": "10",
+          "label": "R"
+        },
+        {
+          "value": "11",
+          "label": "SQL"
+        },
+        {
+          "value": "11",
+          "label": "Power BI"
+        }
       ],
       "bio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
     },
@@ -404,44 +615,55 @@
       "imagePath": "https://randomuser.me/api/portraits/men/13.jpg",
       "fullName": "Daniel Rodriguez",
       "jobPosition": "Desenvolvedor",
+      "squadName": "Developers",
       "squad": {
         "squadName": "Developers",
         "squadLeaderName": "Jane Smith",
-        "squadMembers": [
-          "Jack Johnson",
-          "Jenny Lee"
-        ]
+        "squadMembers": ["Jack Johnson", "Jenny Lee"]
       },
       "hardSkills": [
-        "React JS",
-        "Javascript",
-        "CSS3",
-        "GIT"
+        {
+          "label": "React Js",
+          "value": "1"
+        },
+        {
+          "label": "Javascript",
+          "value": "6"
+        },
+        {
+          "label": "CSS3",
+          "value": "7"
+        },
+        {
+          "label": "GIT",
+          "value": "8"
+        }
       ],
       "bio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
     },
     {
       "fullName": "Tyrion Lannister Macedo",
       "email": "emaildodoguinho@gmail.com",
-      "description": "teste",
+      "jobPosition": "Teste",
       "hardSkills": [
-        "React Js",
-        "Angular",
-        "C#",
-        "Mobile"
-      ],
-      "squad": [
         {
-          "id": "1",
-          "squadName": "Frontend",
-          "squadLeaderName": "Ana Silva",
-          "squadMembers": [
-            "Julia Costa",
-            "Gustavo Santos"
-          ]
+          "label": "React Js",
+          "value": "1"
+        },
+        {
+          "label": "React Native",
+          "value": "2"
+        },
+        {
+          "label": "Angular",
+          "value": "3"
+        },
+        {
+          "label": "C#",
+          "value": "4"
         }
       ],
-      "biography": "Meu nome é Tyrion, sou um pug e tenho 6 aninhos. hihihi",
+      "squadName": "Frontend",
       "inactiveUser": false,
       "imagePath": "https://randomuser.me/api/portraits/women/33.jpg",
       "id": 14

@@ -1,12 +1,13 @@
-import { SquadInfo } from "../squadInfo/squadInfo";
+import { Option } from "@/models/Option";
 
 export interface User {
   fullName: string;
   email: string;
-  description: string;
-  hardSkills: string[];
-  squad: SquadInfo[];
-  biography?: string;
+  jobPosition: string;
+  hardSkills: Option[];
+  squadName: string;
+  squad?: string;
+  bio?: string;
   inactiveUser?: boolean;
-  imagePath?: string | null;
+  imagePath?: File | null;
 }

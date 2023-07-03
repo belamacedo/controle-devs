@@ -53,8 +53,8 @@ export const UserCard = ({
         <div className={`${Styles.skillsContainer()} ${skillsContainerHeight}`}>
           <div className={Styles.skillsContent()}>
             {user.hardSkills?.map((skill) => (
-              <span key={skill} className={Styles.skills()}>
-                {skill}
+              <span key={skill.value} className={Styles.skills()}>
+                {skill.label}
               </span>
             ))}
           </div>

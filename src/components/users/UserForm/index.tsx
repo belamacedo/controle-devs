@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import {
@@ -15,26 +16,35 @@ import {
   Select,
   Switch,
   useForm,
-  MultiSelect,
-  MultiValueProps,
-  Options,
   Tooltip,
   toast,
+  MultiSelect,
 } from "@controle-devs-ui/react";
-
-import "@controle-devs-ui/react/dist/index.css";
 
 import { getSquadQuery } from "@/services/squad/squad-service";
 import { getSquadInfoQuery } from "@/services/squadInfo/squadInfo-service";
+import { getSkillsQuery } from "@/services/skills/skills-service";
+import {
+  addNewUserMutation,
+  updateUserMutation,
+} from "@/services/user/user-service";
+import { SquadInfo } from "@/services/squadInfo/squadInfo";
+import { User } from "@/services/user/user";
+import { Option } from "@/models/Option";
+
+import "@controle-devs-ui/react/dist/index.css";
 
 import * as Styles from "./styles";
-import { getSkillsQuery } from "@/services/skills/skills-service";
-import { addNewUserMutation } from "@/services/user/user-service";
-import { SquadInfo } from "@/services/squadInfo/squadInfo";
 
-export const NewUserForm = () => {
-  const [squads, setSquads] = useState<Options[]>([]);
-  const [skills, setSkills] = useState<Options[]>([]);
+interface Props {
+  id?: number;
+  user?: User;
+}
+
+export const UserForm = ({ user, id }: Props) => {
+  const router = useRouter();
+  const [squads, setSquads] = useState<Option[]>([]);
+  const [skills, setSkills] = useState<Option[]>([]);
   const [squadInfo, setSquadInfo] = useState<SquadInfo[]>([]);
   const [key, setKey] = useState<number>(+new Date());
 
@@ -50,32 +60,34 @@ export const NewUserForm = () => {
       .email("Formato de e-mail inválido")
       .toLowerCase()
       .nonempty("O e-mail é obrigatório"),
-    description: z
+    jobPosition: z
       .string()
       .min(2, {
         message: "A descrição deve ter pelo menos 2 caracteres..",
       })
       .nonempty("O nome é obrigatório"),
-    hardSkills: z.array(z.string()).refine((skills) => skills.length > 0, {
-      message: "Selecione pelo menos uma habilidade",
-    }),
-    squad: z.string().nonempty("Selecione a squad"),
-    biography: z.optional(z.string()),
+    hardSkills: z
+      .array(z.object({ label: z.string(), value: z.string() }))
+      .refine((skills) => skills.length > 0, {
+        message: "Selecione pelo menos uma habilidade",
+      }),
+    squadName: z.string().nonempty("Selecione a squad"),
+    bio: z.optional(z.string()),
     inactiveUser: z.optional(z.boolean()),
     imagePath: z.custom<File | null>(),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
+    defaultValues: user || {
       imagePath: null,
       inactiveUser: false,
-      biography: "",
+      bio: "",
       fullName: "",
       email: "",
-      description: "",
+      jobPosition: "",
       hardSkills: [],
-      squad: "",
+      squadName: "",
     },
   });
 
@@ -86,38 +98,46 @@ export const NewUserForm = () => {
   const handleRemoveImage = () => {
     form.setValue("imagePath", null);
   };
-  const onChangeHardSkills = (selectedOptions: MultiValueProps) => {
-    const options = selectedOptions.map((option) => option.label);
-    form.setValue("hardSkills", options);
+
+  const onChangeHardSkills = (newValue: Option[]) => {
+    form.setValue("hardSkills", newValue, { shouldValidate: true });
   };
 
   const handleClearFields = () => {
     form.reset();
   };
 
-  const generateRandomImage = () => {
-    const randomIndex = Math.floor(Math.random() * 100) + 1;
-    return `https://randomuser.me/api/portraits/women/${randomIndex}.jpg`;
-  };
-
   const handleSquad = (value: string) => {
-    return squadInfo.filter((squad) => squad.squadName === value);
+    const squad = squadInfo.filter((squad) => squad.squadName === value);
+    return squad[0];
   };
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      await addNewUserMutation({
-        ...values,
-        imagePath: values.imagePath !== null ? generateRandomImage() : null,
-        squad: handleSquad(values.squad),
-      });
+      if (id) {
+        await updateUserMutation(id, {
+          ...values,
+        });
+
+        toast.success({
+          title: "Sucesso!",
+          description: "Dados do usuário alterados com sucesso",
+        });
+
+        router.push("/");
+      } else {
+        await addNewUserMutation(handleSquad(values.squadName), {
+          ...values,
+        });
+
+        toast.success({
+          title: "Sucesso!",
+          description: "Usuário cadastrado com sucesso",
+        });
+      }
 
       handleClearFields();
       setKey(+new Date());
-      toast.success({
-        title: "Sucesso!",
-        description: "Usuário cadastrado com sucesso",
-      });
     } catch (error) {
       console.error("Erro ao cadastrar usuário:", error);
 
@@ -222,7 +242,7 @@ export const NewUserForm = () => {
 
             <div className={Styles.contentRightFields()}>
               <FormField
-                name="biography"
+                name="bio"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className={Styles.label()}>Biografia:</FormLabel>
@@ -230,6 +250,7 @@ export const NewUserForm = () => {
                       <textarea
                         {...field}
                         className={Styles.biographyInput()}
+                        value={field.value}
                       />
                     </FormControl>
                   </FormItem>
@@ -244,7 +265,11 @@ export const NewUserForm = () => {
                       Nome completo:
                     </FormLabel>
                     <FormControl>
-                      <Input placeholder="Nome completo" {...field} />
+                      <Input
+                        placeholder="Nome completo"
+                        {...field}
+                        value={field.value}
+                      />
                     </FormControl>
                     <FormMessage className={Styles.message()} />
                   </FormItem>
@@ -265,7 +290,7 @@ export const NewUserForm = () => {
               />
               <FormField
                 control={form.control}
-                name="description"
+                name="jobPosition"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className={Styles.label()}>Descrição:</FormLabel>
@@ -278,7 +303,7 @@ export const NewUserForm = () => {
               />
               <FormField
                 control={form.control}
-                name="squad"
+                name="squadName"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className={Styles.label()}>Squad:</FormLabel>
@@ -291,6 +316,7 @@ export const NewUserForm = () => {
                         options={squads}
                         root={{
                           onValueChange: field.onChange,
+                          value: field.value || undefined,
                         }}
                       />
                     </FormControl>
@@ -311,13 +337,14 @@ export const NewUserForm = () => {
                         key={key}
                         {...field}
                         checkbox={true}
-                        select={{
-                          options: skills,
-                          placeholder: "Selecione as opções...",
-                          closeMenuOnSelect: false,
-                          hideSelectedOptions: false,
-                        }}
-                        onChange={onChangeHardSkills}
+                        options={skills}
+                        placeholder="Selecione as opções..."
+                        closeMenuOnSelect={false}
+                        hideSelectedOptions={false}
+                        onChange={(value) =>
+                          onChangeHardSkills(value as Option[])
+                        }
+                        value={field.value}
                       />
                     </FormControl>
                     <FormMessage className={Styles.message()} />

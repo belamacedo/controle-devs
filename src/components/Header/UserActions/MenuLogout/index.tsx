@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import Image from 'next/image';
-import { Button } from '@controle-devs-ui/react';
+import React, { useState } from "react";
 
+import { Button } from "@controle-devs-ui/react";
 
-import UserAvatar from '../../../../../assets/user-avatar.png';
+import UserAvatar from "../../../../assets/user-avatar.png";
 
-import * as Styles from './styles';
+import * as Styles from "./styles";
 
 const MenuLogout = () => {
   const [isActive, setIsActive] = useState(false);
@@ -24,23 +23,23 @@ const MenuLogout = () => {
   };
 
   const menuItemClassName = `${
-    isActive ? Styles.menuItemActive() : ''
+    isActive ? Styles.menuItemActive() : ""
   } ${Styles.menuItem()}`;
 
   return (
     <div className={Styles.menu()}>
       <div>
         <Button
-          intent='menuButton'
+          intent="menuButton"
           imageSrc={UserAvatar.src}
           onClick={handleOpenMenu}
-          alt='Avatar do usuário'
+          alt="Avatar do usuário"
         />
       </div>
       {isOpen && (
         <div className={Styles.menuItems()}>
           <a
-            href='#'
+            href="#"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             className={menuItemClassName}
