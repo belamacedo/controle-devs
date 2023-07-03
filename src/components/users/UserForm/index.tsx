@@ -115,7 +115,6 @@ export const UserForm = ({ user, id }: Props) => {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       if (id) {
-        console.log("entrou");
         await updateUserMutation(id, {
           ...values,
         });
