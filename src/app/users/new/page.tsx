@@ -1,6 +1,6 @@
 import Layout from "@/components/users/Layout";
-import * as Styles from "./styles";
 import { UserForm } from "@/components/users/UserForm";
+import * as Styles from "./styles";
 
 export default function NewUser() {
   return (
