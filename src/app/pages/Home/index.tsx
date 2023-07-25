@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { Button, Modal, SearchInput } from "@controle-devs-ui/react";
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { Button, Modal, SearchInput } from '@controle-devs-ui/react';
 import {
   deleteUserMutation,
   getUsersQuery,
-} from "@/services/user/user-service";
-import { UserProps } from "@/models/User";
-import { Spinner } from "@/components/Spinner";
-import { UserCard } from "@/components/UserCard";
-import { UserDetails } from "./UserDetails";
-import * as Styles from "./styles";
+} from '@/services/user/user-service';
+import { UserProps } from '@/models/User';
+import { Spinner } from '@/components/Spinner';
+import { UserCard } from '@/components/UserCard';
+import { Card } from '@/components/Card';
+import { UserDetails } from './UserDetails';
+import * as Styles from './styles';
 
 const MAX_CARDS = 6;
 
 const HomePage = () => {
   const router = useRouter();
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [data, setData] = useState<UserProps[]>([]);
   const [showAll, setShowAll] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -58,10 +59,10 @@ const HomePage = () => {
 
     deleteUserMutation(id)
       .then((response) => {
-        console.log("Card excluído com sucesso!");
+        console.log('Card excluído com sucesso!');
       })
       .catch((error) => {
-        console.log("Ocorreu um erro ao excluir o card:", error);
+        console.log('Ocorreu um erro ao excluir o card:', error);
       });
   };
 
@@ -72,7 +73,7 @@ const HomePage = () => {
         .toLowerCase()
         .includes(searchQuery.toLowerCase());
       const hardSkillsMatch = item.hardSkills.some((skill) =>
-        skill.value?.toLowerCase().includes(searchQuery.toLowerCase())
+        skill.value?.toLowerCase().includes(searchQuery.toLowerCase()),
       );
 
       return fullNameMatch || hardSkillsMatch;
@@ -81,7 +82,7 @@ const HomePage = () => {
   const visibleData = showAll ? filteredData : filteredData.slice(0, MAX_CARDS);
 
   const getCardClassName = (index: number) => {
-    return index === 0 ? "mt-4" : "";
+    return index === 0 ? 'mt-4' : '';
   };
 
   const loadingIndicator =
@@ -96,7 +97,7 @@ const HomePage = () => {
       <div className={Styles.homeContainer()}>
         <div className={Styles.inputContainer()}>
           <SearchInput
-            placeholder={"Pesquisar"}
+            placeholder={'Pesquisar'}
             onChange={(value) => setSearchQuery(value)}
           />
         </div>
@@ -104,21 +105,16 @@ const HomePage = () => {
           {loadingIndicator}
           {filteredData &&
             visibleData.map((user, index) => (
-              <UserCard
+              <Card
                 moreDetails={true}
                 key={user.id}
-                user={{
-                  id: user.id,
-                  fullName: user.fullName,
-                  jobPosition: user.jobPosition,
-                  imagePath: user.imagePath,
-                  hardSkills: user.hardSkills,
-                }}
                 onClick={() => handleModalOpen(user)}
                 onChange={() => handleUpdateUser(user.id)}
                 onDelete={() => handleCardDelete(user.id)}
                 className={getCardClassName(index)}
-              />
+              >
+                <UserCard user={user} />
+              </Card>
             ))}
         </div>
         {!showAll && filteredData.length > MAX_CARDS ? (
